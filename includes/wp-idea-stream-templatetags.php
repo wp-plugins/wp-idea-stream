@@ -332,4 +332,29 @@ function is_user_allowed_to_feature_ideas(){
 	elseif($ideastream_allowed_featuring_members!="" && count($ideastream_allowed_featuring_members)>0 && in_array($current_user->ID, $ideastream_allowed_featuring_members)) return true;
 	else return false;
 }
+
+function is_new_idea(){
+	if(ereg('is/new-idea', $_SERVER['REQUEST_URI'])){
+		return true;
+	}
+	else return false;
+}
+function is_all_ideas(){
+	if(ereg('is/all-ideas', $_SERVER['REQUEST_URI'])){
+		return true;
+	}
+	else return false;
+}
+function is_featured_ideas(){
+	if(ereg('is/featured-ideas', $_SERVER['REQUEST_URI'])){
+		return true;
+	}
+	else return false;
+}
+function is_idea_author(){
+	if(ereg('is/idea-author', $_SERVER['REQUEST_URI'])){
+		return true;
+	}
+	else return false;
+}
 ?>
