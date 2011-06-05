@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wp-idea-stream 1.0\n"
 "Report-Msgid-Bugs-To: http://imath.owni.fr\n"
 "POT-Creation-Date: 2010-07-05 15:10+0000\n"
-"PO-Revision-Date: 2011-05-30 01:37+0100\n"
+"PO-Revision-Date: 2011-06-05 11:45+0100\n"
 "Last-Translator: imath <i-math@club.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,15 @@ msgid "Ideas"
 msgstr "Idées"
 
 #: wp-idea-stream.php:38
-#: wp-idea-stream.php:616
-#: wp-idea-stream.php:657
+#: wp-idea-stream.php:653
+#: wp-idea-stream.php:694
 msgid "IdeaStream"
 msgstr "IdeaStream"
 
 #: wp-idea-stream.php:39
-#: wp-idea-stream.php:658
+#: wp-idea-stream.php:266
+#: wp-idea-stream.php:285
+#: wp-idea-stream.php:695
 #: wp-idea-stream-widgets.php:45
 msgid "All Ideas"
 msgstr "Toutes les idées"
@@ -46,7 +48,9 @@ msgid "Edit Idea"
 msgstr "Modifier Idée"
 
 #: wp-idea-stream.php:44
-#: wp-idea-stream.php:661
+#: wp-idea-stream.php:263
+#: wp-idea-stream.php:282
+#: wp-idea-stream.php:698
 #: wp-idea-stream-widgets.php:46
 msgid "New Idea"
 msgstr "Nouvelle Idée"
@@ -159,91 +163,98 @@ msgstr "Choisir parmi les mots clés les plus populaires"
 msgid "To update your Biographical Info, please use this blog form"
 msgstr "Pour mettre à jour vos informations personnelles, merci d'utiliser le formulaire du blog"
 
-#: wp-idea-stream.php:275
-msgid "Your idea is awaiting moderation. Thanks for submitting it."
-msgstr "Votre idée est en cours de modération. Merci pour votre contribution."
-
-#: wp-idea-stream.php:284
-msgid "Please make sure to check the following error(s) :"
-msgstr "Merci de corriger la ou les erreur(s) suivante(s)"
-
-#: wp-idea-stream.php:291
-msgid "Title of your Idea"
-msgstr "Titre de votre Idée"
-
-#: wp-idea-stream.php:292
-msgid "Content of your Idea"
-msgstr "Contenu de votre Idée"
-
-#: wp-idea-stream.php:293
-msgid "Choose at least one category"
-msgstr "Sélectionnez au moins une catégorie"
-
-#: wp-idea-stream.php:304
-msgid "Add your tag(s)"
-msgstr "Ajoutez votre ou vos mot(s) clé(s)"
-
-#: wp-idea-stream.php:304
-msgid "Type your tag, then hit the return or space key to add it"
-msgstr "Taper votre mot clé, puis appuyer sur la touche entrée ou espace pour l'ajouter"
-
-#: wp-idea-stream.php:310
-msgid "Submit your idea"
-msgstr "Déposez votre idée"
-
-#: wp-idea-stream.php:323
-msgid "You need to be member of this site and logged in to submit an idea"
-msgstr "Vous devez être membre de ce site et authentifié pour déposer des idées"
-
-#: wp-idea-stream.php:366
-msgid "Saving your rating, please wait"
-msgstr "Enregistrement de votre note, merci de patienter"
-
-#: wp-idea-stream.php:374
-msgid "Thanks to your rate the average rating of this idea is now : "
-msgstr "Grâce à votre note, la note moyenne de l'idée est désormais :"
-
-#: wp-idea-stream.php:383
-msgid "You must be logged in to rate this idea!"
-msgstr "Vous devez être authentifié pour noter cette idée!"
-
-#: wp-idea-stream.php:396
-#: wp-idea-stream.php:469
-msgid "not rated yet"
-msgstr "en attente de note"
-
-#: wp-idea-stream.php:544
-msgid "Share this idea!"
-msgstr "Diffuser cette idée!"
-
-#: wp-idea-stream.php:546
-msgid "Share by email"
-msgstr "Partager par email"
-
-#: wp-idea-stream.php:573
-msgid "Feature this idea ?"
-msgstr "Distinguer cette idée ?"
-
-#: wp-idea-stream.php:659
-#: wp-idea-stream-widgets.php:48
-msgid "My Ideas"
-msgstr "Mes Idées"
-
-#: wp-idea-stream.php:660
+#: wp-idea-stream.php:269
+#: wp-idea-stream.php:288
+#: wp-idea-stream.php:697
 #: wp-idea-stream-widgets.php:51
 msgid "Featured Ideas"
 msgstr "Idées Distinguées"
 
-#: wp-idea-stream.php:671
+#: wp-idea-stream.php:272
+#: wp-idea-stream.php:291
+msgid "Author Ideas"
+msgstr "Idées Auteur"
+
+#: wp-idea-stream.php:306
+msgid "Your idea is awaiting moderation. Thanks for submitting it."
+msgstr "Votre idée est en cours de modération. Merci pour votre contribution."
+
+#: wp-idea-stream.php:315
+msgid "Please make sure to check the following error(s) :"
+msgstr "Merci de corriger la ou les erreur(s) suivante(s)"
+
+#: wp-idea-stream.php:322
+msgid "Title of your Idea"
+msgstr "Titre de votre Idée"
+
+#: wp-idea-stream.php:323
+msgid "Content of your Idea"
+msgstr "Contenu de votre Idée"
+
+#: wp-idea-stream.php:324
+msgid "Choose at least one category"
+msgstr "Sélectionnez au moins une catégorie"
+
+#: wp-idea-stream.php:335
+msgid "Add your tag(s)"
+msgstr "Ajoutez votre ou vos mot(s) clé(s)"
+
+#: wp-idea-stream.php:335
+msgid "Type your tag, then hit the return or space key to add it"
+msgstr "Taper votre mot clé, puis appuyer sur la touche entrée ou espace pour l'ajouter"
+
+#: wp-idea-stream.php:341
+msgid "Submit your idea"
+msgstr "Déposez votre idée"
+
+#: wp-idea-stream.php:354
+msgid "You need to be member of this site and logged in to submit an idea"
+msgstr "Vous devez être membre de ce site et authentifié pour déposer des idées"
+
+#: wp-idea-stream.php:397
+msgid "Saving your rating, please wait"
+msgstr "Enregistrement de votre note, merci de patienter"
+
+#: wp-idea-stream.php:405
+msgid "Thanks to your rate the average rating of this idea is now : "
+msgstr "Grâce à votre note, la note moyenne de l'idée est désormais :"
+
+#: wp-idea-stream.php:414
+msgid "You must be logged in to rate this idea!"
+msgstr "Vous devez être authentifié pour noter cette idée!"
+
+#: wp-idea-stream.php:427
+#: wp-idea-stream.php:504
+msgid "not rated yet"
+msgstr "en attente de note"
+
+#: wp-idea-stream.php:578
+msgid "Share this idea!"
+msgstr "Diffuser cette idée!"
+
+#: wp-idea-stream.php:580
+msgid "Share by email"
+msgstr "Partager par email"
+
+#: wp-idea-stream.php:610
+msgid "Feature this idea ?"
+msgstr "Distinguer cette idée ?"
+
+#: wp-idea-stream.php:696
+#: wp-idea-stream-widgets.php:48
+msgid "My Ideas"
+msgstr "Mes Idées"
+
+#: wp-idea-stream.php:707
 #: wp-idea-stream-options.php:75
 msgid "IdeaStream Options"
 msgstr "Options IdeaStream"
 
-#: wp-idea-stream.php:721
+#: wp-idea-stream.php:758
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">update your permalink structure</a> to something other than the default for it to work."
 msgstr "<strong>IdeaStream est presque prêt</strong>. Vous devez <a href=\"%s\">mettre à jour votre structure de permaliens</a> à quelque chose de différent du format par défaut afin de permettre le fonctionnement de ce plugin."
 
-#: wp-idea-stream.php:726
+#: wp-idea-stream.php:763
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">refresh your permalink structure</a> to something other than the default <strong>in order to activate the Ideas post type.</strong>"
 msgstr "<strong>IdeaStream est presque prêt</strong>. Vous devez <a href=\"%s\">rafraîchir votre structure de permaliens</a> à quelque chose de différent du format par défaut <strong>afin d'activer le post type Idée.</strong>."
 

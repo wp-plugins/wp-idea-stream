@@ -3,7 +3,7 @@
 Plugin Name: WP Idea Stream
 Plugin URI: http://imath.owni.fr/2011/05/30/wp-idea-stream/
 Description: Adds an Idea Management System to your WordPress!
-Version: 1.0
+Version: 1.0.1
 Requires at least: 3.1
 Tested up to: 3.1.3
 License: GNU/GPL 2
@@ -14,7 +14,7 @@ Author URI: http://imath.owni.fr/
 define ( 'WP_IDEA_STREAM_PLUGIN_NAME', 'wp-idea-stream' );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
 define ( 'WP_IDEA_STREAM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
-define ( 'WP_IDEA_STREAM_VERSION', '1.0' );
+define ( 'WP_IDEA_STREAM_VERSION', '1.0.1' );
 
 /*custom post type*/
 add_action('init','wp_idea_stream_register_post_type');
@@ -258,13 +258,44 @@ function wp_idea_stream_is_all_ideas_onfront(){
 }
 
 function wp_idea_stream_page_title($title){
-	if(get_query_var('pagename') == 'new-idea'){
-		return "New Idea | ";
+	global $user_slug;
+	if(is_new_idea()){
+		return __('New Idea', 'wp-idea-stream') . " | ";
+	}
+	if(is_all_ideas() || (is_home() && get_option( 'page_on_front' ) == 'all-ideas' && !is_featured_ideas())){
+		return __('All Ideas','wp-idea-stream') . " | ";
+	}
+	if(is_featured_ideas()){
+		return __('Featured Ideas','wp-idea-stream') . " | ";
+	}
+	if(is_idea_author()){
+		return __('Author Ideas','wp-idea-stream') . " | " . $user_slug . " | ";
 	}
 	else return $title;
 }
 
 add_filter('wp_title','wp_idea_stream_page_title');
+
+function wp_idea_stream_bp_page_title($title){
+	global $user_slug;
+	if(is_new_idea()){
+		return get_option('blogname') . " | ".__('New Idea', 'wp-idea-stream');
+	}
+	if(is_all_ideas() || (is_home() && get_option( 'page_on_front' ) == 'all-ideas' && !is_featured_ideas())){
+		return get_option('blogname') . " | ".__('All Ideas','wp-idea-stream');
+	}
+	if(is_featured_ideas()){
+		return get_option('blogname') . " | ".__('Featured Ideas','wp-idea-stream');
+	}
+	if(is_idea_author()){
+		return get_option('blogname') . " | ".__('Author Ideas','wp-idea-stream') . " | " . $user_slug;
+	}
+	else return $title;
+}
+
+if(function_exists('bp_init')){
+	add_filter('bp_page_title', 'wp_idea_stream_bp_page_title');
+}
 
 function wp_idea_stream_load_editor(){
 	global $wp_idea_stream_submit_errors;
@@ -334,7 +365,7 @@ function wp_idea_stream_load_editor(){
 add_action('wp_idea_stream_insert_editor','wp_idea_stream_load_editor');
 
 
-function wp_idea_strem_add_footer_js(){
+function wp_idea_stream_add_footer_js(){
 	global $post;
 	$builtin_rating_option = get_option('_ideastream_builtin_rating');
 	if(get_query_var('pagename') == 'new-idea'){
@@ -405,18 +436,22 @@ function wp_idea_strem_add_footer_js(){
 				});
 			});
 		<?php endif;?>
-		<?php if(is_user_logged_in() && ereg('is/idea-author', $_SERVER['REQUEST_URI'])):?>
-			jQuery("#ideastream-edit-btn").click(function() {
-	            jQuery("#ideastream-desc-edit").show();
-				jQuery("#ideastream-desc-action").hide();
-	        });
-		<?php endif;?>
+		</script>
+		<?php
+	}
+	if(is_user_logged_in() && is_idea_author()){
+		?>
+		<script type="text/javascript">
+		jQuery("#ideastream-edit-btn").click(function() {
+            jQuery("#ideastream-desc-edit").show();
+			jQuery("#ideastream-desc-action").hide();
+        });
 		</script>
 		<?php
 	}
 }
 
-add_action('wp_footer', 'wp_idea_strem_add_footer_js');
+add_action('wp_footer', 'wp_idea_stream_add_footer_js');
 
 /*voting functions*/
 add_action('wp_ajax_wp_idea_stream_vote', 'wp_idea_stream_vote_callback');
@@ -480,7 +515,6 @@ function wp_idea_stream_ratings_single(){
 				jQuery.fn.raty.readOnly(true, "#rates-<?php the_ID(); ?>");
 			<?php endif;?>
 		}
-
     });
 	</script>
 	<?php
@@ -547,7 +581,7 @@ function wp_idea_stream_sharing_services(){
 		</li>
 		<?php if($ideastream_twitter_account && $ideastream_twitter_account!=""):?>
 		<li class="ideastream_share_twitter">
-			<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<?php echo $ideastream_twitter_account;?>" data-url="<?php the_permalink();?>" data-text="<?php the_title();?>" data-lang="fr">Tweet</a>
+			<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<?php echo $ideastream_twitter_account;?>" data-url="<?php the_permalink();?>" data-text="<?php the_title();?>" data-lang="en">Tweet</a>
 			<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 		</li>
 		<?php endif;?>
@@ -562,6 +596,9 @@ function wp_idea_stream_sharing_services(){
 */
 
 add_action('comment_form_logged_in_after','wp_idea_stream_feature_idea_form');
+if(function_exists('bp_init')){
+	add_action('bp_blog_comment_form','wp_idea_stream_feature_idea_form');
+}
 
 function wp_idea_stream_feature_idea_form(){
 	$ideastream_feature_from_comments = get_option('_ideastream_feature_from_comments');
@@ -664,11 +701,11 @@ function wp_idea_stream_adminbar_menu($wp_admin_bar){
 
 add_action( 'admin_bar_menu', 'wp_idea_stream_adminbar_menu',999 );
 
-
 add_action('admin_menu','wp_idea_stream_options_menu');
 
 function wp_idea_stream_options_menu(){
 	add_submenu_page( 'edit.php?post_type=ideas', __('IdeaStream Options','wp-idea-stream'), __('IdeaStream Options','wp-idea-stream'), 'edit_others_posts', 'ideastream-options', 'wp_idea_stream_options' );
+	if(get_option('_ideastream_vestion')!=WP_IDEA_STREAM_VERSION) update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
 }
 
 function wp_idea_stream_options(){
@@ -732,7 +769,7 @@ add_action( 'admin_notices', 'wp_idea_stream_activation_notice' );
 add_filter('body_class', 'wp_idea_stream_fix_404_new_idea');
 
 function wp_idea_stream_fix_404_new_idea($bodyclass){
-	if(ereg('is/new-idea', $_SERVER['REQUEST_URI'])){
+	if(is_new_idea()){
 		for($i=0;$i<count($bodyclass);$i++){
 			if($bodyclass[$i]=="error404"){
 				$bodyclass[$i]="is_new_idea";
