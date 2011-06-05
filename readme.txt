@@ -4,7 +4,7 @@ Donate link: http://imath.owni.fr/
 Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Adds an Idea Management System to your WordPress!
 
@@ -12,11 +12,15 @@ Adds an Idea Management System to your WordPress!
 
 WP Idea Stream adds a light Idea Management System to your WordPress Blog. Your members will be able to submit ideas from the front end.
 A star rating system and 4 widgets to display Ideas related content are included.
+
 In IdeaStream admin menu, you'll be able to customize the behavior of the plugin thanks to the submenu IdeaStream Options.
+
 Once the plugin is installed, simply add at least one category of the Idea Post Type from the back end in order to activate the submit form.
 You can specify the IdeaStream list of ideas to show directly on your blog home from the reading options.
+
 This plugin is optimized for twentyten and twentyeleven themes. If you're using another theme, i advise you to copy the templates of WP Idea Stream templates dir and then paste them into your theme's folder.
 Then you can edit the copy you put in your theme's folder to suit your design. If an IdeaStream template is found in active theme dir, it overrides the one in the plugin dir.
+
 WP Idea Stream is available in French and English.
 
 == Installation ==
@@ -40,11 +44,20 @@ Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">h
 
 == Changelog ==
 
+= 1.0.1 =
+
+* fixes the 'edit description link' bug on author idea template
+* adds titles on browser header by filtering wp_title and bp_page_title (BuddyPress)
+* it's now possible to feature ideas from BuddyPress comment template.
+
 = 1.0 =
 
 * Plugin birth..
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+no particular notice for this upgrade.
 
 = 1.0 =
 no upgrades, just a beta version.
