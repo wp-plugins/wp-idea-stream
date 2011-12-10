@@ -3,8 +3,8 @@ Contributors: imath
 Donate link: http://imath.owni.fr/
 Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
 Requires at least: 3.1
-Tested up to: 3.1.3
-Stable tag: 1.0.1
+Tested up to: 3.2.1
+Stable tag: 1.0.2
 
 Adds an Idea Management System to your WordPress!
 
@@ -31,7 +31,15 @@ Activate WP Idea Manager in the "Plugins" admin panel using the "Activate" link.
 
 == Frequently Asked Questions ==
 
-= If you have any question =
+= When on front end, idea category or tag are displaying a 404 ? =
+
+To fix this, you can go to your permalinks settings and simply click on the "save changes" button to update your permalinks settings
+
+= Is WP Idea Stream compatible with WordPress 3.3 ? =
+
+I tested it with the RC 2 and it seems to work.
+
+= If you have any other questions =
 
 Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">here</a> or use this plugin forum.
 
@@ -44,6 +52,10 @@ Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">h
 
 == Changelog ==
 
+= 1.0.2 =
+
+* adds a filter on comment notification text when post author can't edit comment in order to avoid displaying the trash and spam link in the author's mail
+
 = 1.0.1 =
 
 * fixes the 'edit description link' bug on author idea template
@@ -55,6 +67,9 @@ Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">h
 * Plugin birth..
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+no particular notice for this upgrade.
 
 = 1.0.1 =
 no particular notice for this upgrade.
