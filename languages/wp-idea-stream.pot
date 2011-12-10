@@ -234,11 +234,11 @@ msgstr ""
 msgid "IdeaStream Options"
 msgstr ""
 
-#: wp-idea-stream.php:758
+#: wp-idea-stream.php:763
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">update your permalink structure</a> to something other than the default for it to work."
 msgstr ""
 
-#: wp-idea-stream.php:763
+#: wp-idea-stream.php:768
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">refresh your permalink structure</a> to something other than the default <strong>in order to activate the Ideas post type.</strong>"
 msgstr ""
 

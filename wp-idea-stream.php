@@ -3,9 +3,9 @@
 Plugin Name: WP Idea Stream
 Plugin URI: http://imath.owni.fr/2011/05/30/wp-idea-stream/
 Description: Adds an Idea Management System to your WordPress!
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 3.1
-Tested up to: 3.1.3
+Tested up to: 3.2.1
 License: GNU/GPL 2
 Author: imath
 Author URI: http://imath.owni.fr/
@@ -14,7 +14,7 @@ Author URI: http://imath.owni.fr/
 define ( 'WP_IDEA_STREAM_PLUGIN_NAME', 'wp-idea-stream' );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
 define ( 'WP_IDEA_STREAM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
-define ( 'WP_IDEA_STREAM_VERSION', '1.0.1' );
+define ( 'WP_IDEA_STREAM_VERSION', '1.0.2' );
 
 /*custom post type*/
 add_action('init','wp_idea_stream_register_post_type');
@@ -740,11 +740,16 @@ function wp_idea_stream_add_query_vars($vars){
 register_activation_hook ( __FILE__ , 'wp_idea_stream_activate');
 
 function wp_idea_stream_activate(){
-	if(!get_option('_ideastream_vestion') || get_option('_ideastream_vestion')=="" || get_option('_ideastream_vestion')!=WP_IDEA_STREAM_VERSION) update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
-	wp_idea_stream_add_rewrite_rules();
-	wp_idea_stream_register_post_type();
-	wp_idea_stream_register_taxo();
-	flush_rewrite_rules();
+	if( get_option('_ideastream_vestion') && get_option('_ideastream_vestion') != WP_IDEA_STREAM_VERSION){
+		update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
+	}		
+	elseif( !get_option('_ideastream_vestion') ){
+		wp_idea_stream_add_rewrite_rules();
+		wp_idea_stream_register_post_type();
+		wp_idea_stream_register_taxo();
+		flush_rewrite_rules();
+		update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
+	}
 }
 
 function wp_idea_stream_activation_notice() {
@@ -784,4 +789,22 @@ function wp_idea_stream_load_language_file(){
 }
 
 add_action('plugins_loaded', 'wp_idea_stream_load_language_file');
+
+/* let's filter to avoid the spam and trash link in notification message */
+
+function wp_idea_stream_filter_notification($message, $comment_id){
+	$comment = get_comment($comment_id);
+	$post = get_post($comment->comment_post_ID);
+	$user = get_userdata( $post->post_author );
+	
+	if( !user_can($user->ID, 'edit_comment') ){
+		$notify_message  = sprintf( __( 'New comment on your post "%s"' ), $post->post_title ) . "\r\n";
+		$notify_message .= __('Comment: ') . "\r\n" . $comment->comment_content . "\r\n\r\n";
+		$notify_message .= sprintf( __('Permalink: %s'), get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment_id ) . "\r\n";
+		return $notify_message;
+	}
+	else return $message;
+}
+
+add_filter('comment_notification_text', 'wp_idea_stream_filter_notification', 9, 2);
 ?>

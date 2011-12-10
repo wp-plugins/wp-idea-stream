@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wp-idea-stream 1.0\n"
 "Report-Msgid-Bugs-To: http://imath.owni.fr\n"
 "POT-Creation-Date: 2010-07-05 15:10+0000\n"
-"PO-Revision-Date: 2011-06-05 11:45+0100\n"
+"PO-Revision-Date: 2011-12-10 15:33+0100\n"
 "Last-Translator: imath <i-math@club.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -250,11 +250,11 @@ msgstr "Mes Idées"
 msgid "IdeaStream Options"
 msgstr "Options IdeaStream"
 
-#: wp-idea-stream.php:758
+#: wp-idea-stream.php:763
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">update your permalink structure</a> to something other than the default for it to work."
 msgstr "<strong>IdeaStream est presque prêt</strong>. Vous devez <a href=\"%s\">mettre à jour votre structure de permaliens</a> à quelque chose de différent du format par défaut afin de permettre le fonctionnement de ce plugin."
 
-#: wp-idea-stream.php:763
+#: wp-idea-stream.php:768
 msgid "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">refresh your permalink structure</a> to something other than the default <strong>in order to activate the Ideas post type.</strong>"
 msgstr "<strong>IdeaStream est presque prêt</strong>. Vous devez <a href=\"%s\">rafraîchir votre structure de permaliens</a> à quelque chose de différent du format par défaut <strong>afin d'activer le post type Idée.</strong>."
 
