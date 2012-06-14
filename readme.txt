@@ -3,8 +3,9 @@ Contributors: imath
 Donate link: http://imath.owni.fr/
 Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
 Requires at least: 3.1
-Tested up to: 3.2.1
-Stable tag: 1.0.2
+Tested up to: 3.4
+Stable tag: 1.0.3
+License: GNU/GPL 2
 
 Adds an Idea Management System to your WordPress!
 
@@ -52,6 +53,12 @@ Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">h
 
 == Changelog ==
 
+= 1.0.3 =
+
+* fixes a trouble appeared in WP 3.4 on the wysiwyg editor
+* fixes a redirect trouble once the idea is posted if plugin is activated in a child blog
+* adds status header to avoid 404 in several templates
+
 = 1.0.2 =
 
 * adds a filter on comment notification text when post author can't edit comment in order to avoid displaying the trash and spam link in the author's mail
@@ -67,6 +74,9 @@ Please add a comment <a href="http://imath.owni.fr/2011/05/30/wp-idea-stream/">h
 * Plugin birth..
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+no particular notice for this upgrade.
 
 = 1.0.2 =
 no particular notice for this upgrade.
