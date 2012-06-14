@@ -54,4 +54,5 @@ if($_POST['_wp_is_tags']) wp_set_post_terms( $post_id, str_replace(' ',',', $_PO
 //redirect to published idea
 if($idea_status == 'publish') wp_redirect( get_permalink($post_id) );
 else wp_redirect( wp_idea_stream_new_form().'?moderation=1');
+die();
 ?>
