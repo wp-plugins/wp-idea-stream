@@ -34,8 +34,12 @@ body.is_new_idea small{
 	text-align:right;
 }
 
+#wp_editbtns, #wp_gallerybtns{
+	display:none!important;
+}
+
 #content .wp_themeSkin .mceLayout{
-	border:solid 1px #E2E2E2;
+	/*border:solid 1px #E2E2E2;*/
 }
 #content .wp_themeSkin tr td {
     padding: 0;
@@ -43,7 +47,11 @@ body.is_new_idea small{
 
 .wp_themeSkin tr.mceFirst td.mceToolbar {
     background: url("../images/ed-bg.gif") repeat-x scroll left top #DFDFDF;
-    border-color: #DFDFDF;
+}
+
+#content table, #content tr td {
+	border:none;
+	padding:0;
 }
 
 .wp_themeSkin .mceButton {
@@ -53,6 +61,11 @@ body.is_new_idea small{
 #content table.mceToolbar {
     width: auto;
     margin: 0 2px 2px;
+}
+
+table#ideastream_content_tbl{
+	margin:0;
+	border:none;
 }
 
 
@@ -117,4 +130,9 @@ body.is_new_idea small{
 #ideastream_moderation p{
 	padding-top:20px;
 	text-align:center;
+}
+
+.new-idea-form label {
+	display:block;
+	margin-top:1em;
 }

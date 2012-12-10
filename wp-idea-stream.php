@@ -1,20 +1,24 @@
 <?php
 /*
 Plugin Name: WP Idea Stream
-Plugin URI: http://imath.owni.fr/2011/05/30/wp-idea-stream/
+Plugin URI: http://imath.owni.fr/tag/ideastream/
 Description: Adds an Idea Management System to your WordPress!
-Version: 1.0.3
-Requires at least: 3.1
-Tested up to: 3.4
+Version: 1.1
+Requires at least: 3.5
+Tested up to: 3.5
 License: GNU/GPL 2
 Author: imath
 Author URI: http://imath.owni.fr/
+Text Domain: wp-idea-stream
+Domain Path: /languages/
 */
 
 define ( 'WP_IDEA_STREAM_PLUGIN_NAME', 'wp-idea-stream' );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
 define ( 'WP_IDEA_STREAM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
-define ( 'WP_IDEA_STREAM_VERSION', '1.0.3' );
+define ( 'WP_IDEA_STREAM_PLUGIN_URL_JS', plugins_url('js' , __FILE__) );
+define ( 'WP_IDEA_STREAM_PLUGIN_URL_IMG',  plugins_url('images' , __FILE__) );
+define ( 'WP_IDEA_STREAM_VERSION', '1.1' );
 
 /*custom post type*/
 add_action('init','wp_idea_stream_register_post_type');
@@ -106,6 +110,7 @@ function wp_idea_stream_register_taxo(){
 
 //load template tags
 require_once(dirname(__FILE__).'/includes/wp-idea-stream-templatetags.php');
+require_once(dirname(__FILE__).'/includes/wp-idea-stream-filters.php');
 
 add_action('template_redirect','wp_idea_stream_catch_uri', 99);
 
@@ -128,9 +133,9 @@ function wp_idea_stream_catch_uri(){
 		$link = get_term_link($cat_ideas, 'category-ideas');
 		wp_redirect($link);
 	}
-	if(get_option("stylesheet")=="twentyeleven" && (get_query_var('ideas') || get_query_var('category-ideas') || get_query_var('tag-ideas') || get_query_var('pagename') == 'new-idea' || get_query_var('pagename') == 'idea-author' || get_query_var('pagename') == 'featured-ideas' || get_query_var('pagename') == 'all-ideas' || wp_idea_stream_is_all_ideas_onfront())){
-		wp_enqueue_style('2011-fix', WP_IDEA_STREAM_PLUGIN_URL .'/css/2011.css');
-	}
+	
+	do_action( 'wp_idea_stream_manage_twentyup');
+	
 	if(get_query_var('ideas') && !get_query_var('feed')){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
@@ -165,11 +170,10 @@ function wp_idea_stream_catch_uri(){
 		status_header( 200 );
 		$wp_query->is_404 = false;
 		$wp_query->is_page = true;
-		wp_enqueue_script('utils');
+		//wp_enqueue_script('utils');
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('si-tag-editor', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.tag.editor-min.js', 'jquery');
 		wp_enqueue_style('style-subidea', WP_IDEA_STREAM_PLUGIN_URL .'/css/style.css');
-		wp_is_fix_css_editor();
 		$template = locate_template('new-idea.php', true);
 		if(!$template){
 			load_template(dirname( __FILE__ ) . '/templates/new-idea.php', true);
@@ -307,75 +311,6 @@ function wp_idea_stream_bp_page_title($title){
 if(function_exists('bp_init')){
 	add_filter('bp_page_title', 'wp_idea_stream_bp_page_title');
 }
-
-function wp_idea_stream_load_editor(){
-	global $wp_idea_stream_submit_errors;
-	if(is_user_logged_in()){
-		if(isset($_GET['moderation'])){
-			$ideastream_moderation_message = get_option('_ideastream_moderation_message');
-			if(!$ideastream_moderation_message || $ideastream_moderation_message==""){
-				$ideastream_moderation_message = __('Your idea is awaiting moderation. Thanks for submitting it.','wp-idea-stream');
-			}
-			?>
-				<div id="ideastream_moderation"><p><?php echo $ideastream_moderation_message;?></p></div>
-			<?php
-		}
-		else{
-			wp_is_fix_editor_wp_lang_fatal_error();
-			
-			require_once(dirname(__FILE__).'/includes/si-tiny-mce.php');
-			if(count($wp_idea_stream_submit_errors) > 0){
-				$idea_content .= '<div id="ideastream_errors"><p>'.__('Please make sure to check the following error(s) :','wp-idea-stream').'</p><ul>';
-				foreach($wp_idea_stream_submit_errors as $error){
-					$idea_content .= '<li>'.$error.'</li>';
-				}
-				$idea_content .='</ul></div>';
-			}
-			$idea_content .= '<form action="" method="post" enctype="multipart/form-data">';
-			$idea_content .= '<div class="new-idea-form"><label for="_wp_is_title">'.__('Title of your Idea','wp-idea-stream').'</label><input type="text" id="wp_is_title" name="_wp_is_title" value="'.wp_kses(stripslashes($_POST["_wp_is_title"]), array()).'"/></div>';
-			$idea_content .= '<div class="new-idea-form"><label for="content">'.__('Content of your Idea','wp-idea-stream').'</label><textarea tabindex="2" name="content" id="ideastream_content" class="ideastream_tinymce" cols="40" rows="12" value="'.wp_kses(stripslashes($_POST["content"]), wp_idea_stream_allowed_html_tags()).'"></textarea></div>';
-			$idea_content .= '<div class="new-idea-form"><label for="_wp_is_category">'.__('Choose at least one category','wp-idea-stream').'</label>';
-			$idea_content .= '<p>';
-			// getting taxo cat
-			$table_taxo = get_terms('category-ideas', 'orderby=count&hide_empty=0');
-			if(count($table_taxo)>=0){
-				foreach($table_taxo as $taxo){
-					$idea_content .='<input type="checkbox" name="_wp_is_category[]" id="wp_is_category-'.$taxo->term_id.'" value="'.$taxo->term_id.'">'.$taxo->name.'&nbsp;';
-				}
-			}
-			$idea_content .= '</p></div>';
-
-			$idea_content .= '<div class="new-idea-form"><label for="_wp_is_tags">'.__('Add your tag(s)','wp-idea-stream').'</label><br><small>'.__('Type your tag, then hit the return or space key to add it','wp-idea-stream').'</small><br/><input type="text" id="wp_is_tags" name="_wp_is_tags"/></div>';
-
-			$idea_content .= apply_filters('wp_idea_stream_add_extra_fields', '');
-
-			$idea_content .= wp_nonce_field('wp-ideastream-check-referrer','wp-ideastream-check', true, false);
-
-			$idea_content .= '<div class="is-action-btn"><input type="submit" name="_wp_is_submit_idea" id="wp_is_submit_idea" value="'.__('Submit your idea','wp-idea-stream').' &rarr;" class="ideastream_btn"/></div>';
-			$idea_content .= '</form>';
-
-			$wp_idea_stream_editor = new SI_Tiny_MCE();
-
-			$wp_idea_stream_editor->tiny_mce(true, array("editor_selector" => "ideastream_tinymce"));
-
-			echo $idea_content;
-		}
-	}
-	else{
-		$ideastream_login_message = get_option('_ideastream_login_message');
-		if(!$ideastream_login_message || $ideastream_login_message==""){
-			$ideastream_login_message = __('You need to be member of this site and logged in to submit an idea','wp-idea-stream');
-		}
-		?>
-		<div id="ideastream_notlogged">
-			<p><?php echo $ideastream_login_message;?></p>
-			<?php do_action('wp_idea_stream_submit_idea_not_logged');?>
-		</div>
-		<?php
-	}
-}
-
-add_action('wp_idea_stream_insert_editor','wp_idea_stream_load_editor');
 
 
 function wp_idea_stream_add_footer_js(){
