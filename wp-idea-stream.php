@@ -132,6 +132,7 @@ function wp_idea_stream_catch_uri(){
 		$cat_ideas = get_term($_GET['cat-is'], 'category-ideas' );
 		$link = get_term_link($cat_ideas, 'category-ideas');
 		wp_redirect($link);
+		die();
 	}
 	
 	do_action( 'wp_idea_stream_manage_twentyup');
@@ -170,7 +171,6 @@ function wp_idea_stream_catch_uri(){
 		status_header( 200 );
 		$wp_query->is_404 = false;
 		$wp_query->is_page = true;
-		//wp_enqueue_script('utils');
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('si-tag-editor', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.tag.editor-min.js', 'jquery');
 		wp_enqueue_style('style-subidea', WP_IDEA_STREAM_PLUGIN_URL .'/css/style.css');
