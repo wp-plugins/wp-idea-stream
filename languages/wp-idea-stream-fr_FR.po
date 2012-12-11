@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wp-idea-stream 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-idea-stream\n"
 "POT-Creation-Date: 2012-12-09 19:47:18+00:00\n"
-"PO-Revision-Date: 2012-12-10 00:34+0100\n"
+"PO-Revision-Date: 2012-12-11 20:13+0100\n"
 "Last-Translator: imath <i-math@club.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -740,7 +740,7 @@ msgstr "http://imath.owni.fr/tag/ideastream/"
 #. Description of the plugin/theme
 msgid "Adds an Idea Management System to your WordPress!"
 msgstr ""
-"Ce plugin ajoute une système de management des idées dans votre WordPress!"
+"Ce plugin ajoute un système de management des idées dans votre WordPress!"
 
 #. Author of the plugin/theme
 msgid "imath"
