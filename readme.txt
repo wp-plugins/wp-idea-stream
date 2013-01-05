@@ -1,6 +1,6 @@
 === WP Idea Stream ===
 Contributors: imath
-Donate link: http://imath.owni.fr/
+Donate link: http://imathi.eu/donations/
 Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
 Requires at least: 3.5
 Tested up to: 3.5
@@ -53,7 +53,7 @@ To fix this, you can go to your permalinks settings and simply click on the "sav
 
 = If you have any other questions =
 
-Please add a comment [here](http://imath.owni.fr/tag/ideastream/ "my blog") or use this plugin forum.
+Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or use this plugin forum.
 
 == Screenshots ==
 
