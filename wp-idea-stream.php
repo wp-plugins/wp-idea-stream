@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: WP Idea Stream
-Plugin URI: http://imath.owni.fr/tag/ideastream/
+Plugin URI: http://imathi.eu/tag/wp-idea-stream/
 Description: Adds an Idea Management System to your WordPress!
 Version: 1.1
 Requires at least: 3.5
 Tested up to: 3.5
 License: GNU/GPL 2
 Author: imath
-Author URI: http://imath.owni.fr/
+Author URI: http://imathi.eu/
 Text Domain: wp-idea-stream
 Domain Path: /languages/
 */
