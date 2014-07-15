@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-idea-stream 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-idea-stream\n"
-"POT-Creation-Date: 2012-12-09 19:47:18+00:00\n"
-"PO-Revision-Date: 2012-12-11 20:13+0100\n"
-"Last-Translator: imath <i-math@club.fr>\n"
+"POT-Creation-Date: 2014-07-15 18:49:30+00:00\n"
+"PO-Revision-Date: 2014-07-15 20:51+0100\n"
+"Last-Translator: imath <mathchristo@yahoo.fr>\n"
 "Language-Team: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: includes/wp-idea-stream-add-new.php:4
 msgid "You need to use the IdeaStream form to submit an idea"
@@ -36,92 +37,92 @@ msgstr "Le contenu est obligatoire"
 msgid "Category is required"
 msgstr "La catégorie est obligatoire"
 
-#: includes/wp-idea-stream-options.php:52
+#: includes/wp-idea-stream-options.php:53
 msgid "<strong>IdeaStream Options saved</strong>"
 msgstr "<strong>Options IdeaStream enregistrées</strong>"
 
-#: includes/wp-idea-stream-options.php:75 wp-idea-stream.php:655
+#: includes/wp-idea-stream-options.php:76 wp-idea-stream.php:658
 msgid "IdeaStream Options"
 msgstr "Options IdeaStream"
 
-#: includes/wp-idea-stream-options.php:79
+#: includes/wp-idea-stream-options.php:80
 msgid "Idea Submission Options"
 msgstr "Options pour le dépôt des Idées"
 
-#: includes/wp-idea-stream-options.php:81
+#: includes/wp-idea-stream-options.php:82
 msgid "Image Button"
 msgstr "Bouton Image"
 
-#: includes/wp-idea-stream-options.php:83
-#: includes/wp-idea-stream-options.php:96
-#: includes/wp-idea-stream-options.php:119
-#: includes/wp-idea-stream-options.php:130
-#: includes/wp-idea-stream-options.php:142
+#: includes/wp-idea-stream-options.php:84
+#: includes/wp-idea-stream-options.php:97
+#: includes/wp-idea-stream-options.php:120
+#: includes/wp-idea-stream-options.php:131
+#: includes/wp-idea-stream-options.php:143
 msgid "Activate"
 msgstr "Activer"
 
-#: includes/wp-idea-stream-options.php:85
-#: includes/wp-idea-stream-options.php:98
-#: includes/wp-idea-stream-options.php:121
-#: includes/wp-idea-stream-options.php:132
-#: includes/wp-idea-stream-options.php:144
+#: includes/wp-idea-stream-options.php:86
+#: includes/wp-idea-stream-options.php:99
+#: includes/wp-idea-stream-options.php:122
+#: includes/wp-idea-stream-options.php:133
+#: includes/wp-idea-stream-options.php:145
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: includes/wp-idea-stream-options.php:87
+#: includes/wp-idea-stream-options.php:88
 msgid "Status of new ideas"
 msgstr "Statut des nouvelles idées"
 
-#: includes/wp-idea-stream-options.php:89
+#: includes/wp-idea-stream-options.php:90
 msgid "Published"
 msgstr "Publié"
 
-#: includes/wp-idea-stream-options.php:90
+#: includes/wp-idea-stream-options.php:91
 msgid "Pending"
 msgstr "En attente"
 
-#: includes/wp-idea-stream-options.php:94
+#: includes/wp-idea-stream-options.php:95
 msgid "Link Button"
 msgstr "Bouton Lien"
 
-#: includes/wp-idea-stream-options.php:100
+#: includes/wp-idea-stream-options.php:101
 msgid "Awaiting moderation message"
 msgstr "Message d'attente de la modération"
 
-#: includes/wp-idea-stream-options.php:103
+#: includes/wp-idea-stream-options.php:104
 msgid "Image max width in pixels <small>(default is 300)</small>"
 msgstr "Largeur maximum pour l'Image <small>(par défaut 300)</small>"
 
-#: includes/wp-idea-stream-options.php:106
+#: includes/wp-idea-stream-options.php:107
 msgid "Message to display if user is not logged in"
 msgstr "Message à afficher si l'utilisateur n'est pas authentifié"
 
-#: includes/wp-idea-stream-options.php:114
+#: includes/wp-idea-stream-options.php:115
 msgid "IdeaStream Ratings, Sharing and Featuring Options"
 msgstr ""
 "Options des composants de Notation, Partage et Distinction d'IdeaStream"
 
-#: includes/wp-idea-stream-options.php:117
+#: includes/wp-idea-stream-options.php:118
 msgid "Built in rating system"
 msgstr "Composant de notation"
 
-#: includes/wp-idea-stream-options.php:123
+#: includes/wp-idea-stream-options.php:124
 msgid "Comma separated list of captions for the stars"
 msgstr "Liste des valeurs pour les étoiles séparées par des virgules"
 
-#: includes/wp-idea-stream-options.php:128
+#: includes/wp-idea-stream-options.php:129
 msgid "Sharing options"
 msgstr "Options de Partage"
 
-#: includes/wp-idea-stream-options.php:134
+#: includes/wp-idea-stream-options.php:135
 msgid "Twitter account <small>(leave blank to disable)</small>"
 msgstr "Compte Twitter <small>(laisser vide pour désactiver)</small>"
 
-#: includes/wp-idea-stream-options.php:140
+#: includes/wp-idea-stream-options.php:141
 msgid "Featuring ideas in comment area"
 msgstr "Distinguer les idées depuis le formulaire de commentaire"
 
-#: includes/wp-idea-stream-options.php:146
+#: includes/wp-idea-stream-options.php:147
 msgid ""
 "<small>Admin and Editor can also feature ideas by adding a postmeta named "
 "<b>idea_stream_featured</b> with a value of <b>1</b>.</small>"
@@ -130,11 +131,11 @@ msgstr ""
 "en ajoutant un postmeta <b>idea_stream_featured</b> avec pour valeur <b>1</"
 "b>.</small>"
 
-#: includes/wp-idea-stream-options.php:149
+#: includes/wp-idea-stream-options.php:150
 msgid "Add a comma separated list of trusted user ids to help you"
 msgstr "Ajoutez une liste d'identifiants utilisateur séparés par des virgules"
 
-#: includes/wp-idea-stream-options.php:157
+#: includes/wp-idea-stream-options.php:158
 msgid "Save IdeaStream Options"
 msgstr "Enregistrer ces réglages"
 
@@ -176,44 +177,48 @@ msgstr "&raquo;"
 msgid "Page: "
 msgstr "Page:"
 
-#: includes/wp-idea-stream-templatetags.php:375
+#: includes/wp-idea-stream-templatetags.php:378
 msgid "Your idea is awaiting moderation. Thanks for submitting it."
 msgstr "Votre idée est en cours de modération. Merci pour votre contribution."
 
-#: includes/wp-idea-stream-templatetags.php:386
+#: includes/wp-idea-stream-templatetags.php:389
 msgid "Please make sure to check the following error(s) :"
 msgstr "Merci de corriger la ou les erreur(s) suivante(s)"
 
-#: includes/wp-idea-stream-templatetags.php:415
+#: includes/wp-idea-stream-templatetags.php:421
 msgid "Title of your Idea"
 msgstr "Titre de votre Idée"
 
-#: includes/wp-idea-stream-templatetags.php:420
+#: includes/wp-idea-stream-templatetags.php:426
 msgid "Content of your Idea"
 msgstr "Contenu de votre Idée"
 
-#: includes/wp-idea-stream-templatetags.php:427
+#: includes/wp-idea-stream-templatetags.php:433
 msgid "Choose at least one category"
 msgstr "Sélectionnez au moins une catégorie"
 
-#: includes/wp-idea-stream-templatetags.php:442
+#: includes/wp-idea-stream-templatetags.php:448
 msgid "Add your tag(s)"
 msgstr "Ajoutez votre ou vos mot(s) clé(s)"
 
-#: includes/wp-idea-stream-templatetags.php:443
+#: includes/wp-idea-stream-templatetags.php:449
 msgid "Type your tag, then hit the return or space key to add it"
 msgstr ""
 "Taper votre mot clé, puis appuyer sur la touche entrée ou espace pour "
 "l'ajouter"
 
-#: includes/wp-idea-stream-templatetags.php:454
+#: includes/wp-idea-stream-templatetags.php:460
 msgid "Submit your idea"
 msgstr "Déposez votre idée"
 
-#: includes/wp-idea-stream-templatetags.php:465
+#: includes/wp-idea-stream-templatetags.php:473
 msgid "You need to be member of this site and logged in to submit an idea"
 msgstr ""
 "Vous devez être membre de ce site et authentifié pour déposer des idées"
+
+#: includes/wp-idea-stream-templatetags.php:532 templates/new-idea.php:15
+msgid "Submit your idea!"
+msgstr "Déposez votre idée!"
 
 #: includes/wp-idea-stream-widgets.php:17
 msgid "Displays the different menus available in WP IdeaStream Plugin"
@@ -226,21 +231,21 @@ msgid "IdeaStream Menu"
 msgstr "Menu IdeaStream"
 
 #: includes/wp-idea-stream-widgets.php:45 wp-idea-stream.php:43
-#: wp-idea-stream.php:281 wp-idea-stream.php:300 wp-idea-stream.php:643
+#: wp-idea-stream.php:280 wp-idea-stream.php:299 wp-idea-stream.php:646
 msgid "All Ideas"
 msgstr "Toutes les idées"
 
 #: includes/wp-idea-stream-widgets.php:46 wp-idea-stream.php:48
-#: wp-idea-stream.php:278 wp-idea-stream.php:297 wp-idea-stream.php:646
+#: wp-idea-stream.php:277 wp-idea-stream.php:296 wp-idea-stream.php:649
 msgid "New Idea"
 msgstr "Nouvelle Idée"
 
-#: includes/wp-idea-stream-widgets.php:48 wp-idea-stream.php:644
+#: includes/wp-idea-stream-widgets.php:48 wp-idea-stream.php:647
 msgid "My Ideas"
 msgstr "Mes Idées"
 
-#: includes/wp-idea-stream-widgets.php:51 wp-idea-stream.php:284
-#: wp-idea-stream.php:303 wp-idea-stream.php:645
+#: includes/wp-idea-stream-widgets.php:51 wp-idea-stream.php:283
+#: wp-idea-stream.php:302 wp-idea-stream.php:648
 msgid "Featured Ideas"
 msgstr "Idées Distinguées"
 
@@ -309,112 +314,6 @@ msgstr "Nombre d'idées:"
 #: includes/wp-idea-stream-widgets.php:280
 msgid "Display only ideas of current month"
 msgstr "Afficher uniquement le mois en cours"
-
-#: js/img/box.php:23
-msgid "Add a photo"
-msgstr "Ajouter une image"
-
-#: js/img/box.php:52
-msgid "Url to your image"
-msgstr "Url de votre image"
-
-#: js/img/box.php:60
-msgid "Text replacement for your picture"
-msgstr "Texte alternatif pour votre image"
-
-#: js/img/box.php:64
-msgid "Image original height"
-msgstr "Hauteur d&#39;origine de votre image"
-
-#: js/img/box.php:65
-msgid "Image original width"
-msgstr "Largeur d&#39;origine de votre image"
-
-#: js/img/box.php:68
-msgid "Width in pixels for your picture (only numbers)"
-msgstr "Largeur en pixels de votre image (seulement les chiffres)"
-
-#: js/img/box.php:69
-msgid "Max width authorized by admin is %s px"
-msgstr "La largeur max. autorisée par l&#39;admin est %s px"
-
-#: js/img/box.php:75
-msgid "Image alignment"
-msgstr "Alignement de l&#39;image"
-
-#: js/img/box.php:78
-msgid "None"
-msgstr "Aucun"
-
-#: js/img/box.php:81
-msgid "Left"
-msgstr "Gauche"
-
-#: js/img/box.php:84
-msgid "Right"
-msgstr "Droite"
-
-#: js/img/box.php:87
-msgid "Center"
-msgstr "Centrée"
-
-#: js/img/box.php:94
-msgid "Add Picture"
-msgstr "Ajouter l&#39;image"
-
-#: js/img/box.php:95 js/link/box.php:35
-msgid "Cancel"
-msgstr "Annuler"
-
-#: js/img/box.php:133
-msgid "You must add a well formed url to your picture beginning by http://"
-msgstr ""
-"Vous devez entrer une url bien formée pour votre image (elle doit démarrer "
-"par http://)"
-
-#: js/img/box.php:139
-msgid ""
-"You must add a well formed url to your picture with only one reference to "
-"http://"
-msgstr ""
-"Vous devez entrer une url bien formée pour votre image (elle ne doit "
-"comporter qu&#39;une référence à http://)"
-
-#: js/img/box.php:145
-msgid "Please add the url of your picture"
-msgstr "Merci d&#39;ajouter l&#39;url vers votre image"
-
-#: js/link/box.php:13 js/link/box.php:34
-msgid "Add link"
-msgstr "Ajouter un lien"
-
-#: js/link/box.php:22
-msgid "Url of your link"
-msgstr "Url de votre lien"
-
-#: js/link/box.php:26
-msgid "Caption of your link (selected text by default)"
-msgstr "Alias de votre lien (par défaut le texte sélectionné)"
-
-#: js/link/box.php:30
-msgid "Tooltip (or title) of your link (selected text by default)"
-msgstr "Info-bulle (ou titre) de votre lien (par défaut le texte sélectionné)"
-
-#: js/link/box.php:55
-msgid "You must add a well formed url beginning par http://"
-msgstr ""
-"Vous devez entrer une url bien formée pour votre lien (elle doit démarrer "
-"par http://)"
-
-#: js/link/box.php:61
-msgid "You must add a well formed url with only one reference to http://"
-msgstr ""
-"Vous devez entrer une url bien formée pour votre lien (elle ne doit "
-"comporter qu&#39;une référence à http://)"
-
-#: js/link/box.php:67
-msgid "Please add an url."
-msgstr "Merci d&#39;ajouter une url."
 
 #: templates/all-ideas.php:14
 msgid "Number of ideas so far: %s"
@@ -506,10 +405,6 @@ msgstr "A propos de %s"
 msgid "This user hasn't filled his info"
 msgstr "Cet utilisateur n'a pas renseigné son profil"
 
-#: templates/new-idea.php:15
-msgid "Submit your idea!"
-msgstr "Déposez votre idée!"
-
 #: templates/single-idea.php:36
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Continuer la lecture <span class=\"meta-nav\">&rarr;</span>"
@@ -530,7 +425,7 @@ msgstr "Archives du mot clé:  %s | %s idées ont été déposées jusqu'à pré
 msgid "Ideas"
 msgstr "Idées"
 
-#: wp-idea-stream.php:42 wp-idea-stream.php:601 wp-idea-stream.php:642
+#: wp-idea-stream.php:42 wp-idea-stream.php:604 wp-idea-stream.php:645
 msgid "IdeaStream"
 msgstr "IdeaStream"
 
@@ -656,47 +551,47 @@ msgstr ""
 "Pour mettre à jour vos informations personnelles, merci d'utiliser le "
 "formulaire du blog"
 
-#: wp-idea-stream.php:287 wp-idea-stream.php:306
+#: wp-idea-stream.php:286 wp-idea-stream.php:305
 msgid "Author Ideas"
 msgstr "Idées Auteur"
 
-#: wp-idea-stream.php:345
+#: wp-idea-stream.php:344
 msgid "Saving your rating, please wait"
 msgstr "Enregistrement de votre note, merci de patienter"
 
-#: wp-idea-stream.php:353
+#: wp-idea-stream.php:352
 msgid "Thanks to your rate the average rating of this idea is now : "
 msgstr "Grâce à votre note, la note moyenne de l'idée est désormais :"
 
-#: wp-idea-stream.php:362
+#: wp-idea-stream.php:361
 msgid "You must be logged in to rate this idea!"
 msgstr "Vous devez être authentifié pour noter cette idée!"
 
-#: wp-idea-stream.php:375 wp-idea-stream.php:452
+#: wp-idea-stream.php:374 wp-idea-stream.php:455
 msgid "not rated yet"
 msgstr "en attente de note"
 
-#: wp-idea-stream.php:526
+#: wp-idea-stream.php:529
 msgid "Share this idea!"
 msgstr "Diffuser cette idée!"
 
-#: wp-idea-stream.php:528
+#: wp-idea-stream.php:531
 msgid "Share by email"
 msgstr "Partager par email"
 
-#: wp-idea-stream.php:558
+#: wp-idea-stream.php:561
 msgid "Feature this idea ?"
 msgstr "Distinguer cette idée ?"
 
-#: wp-idea-stream.php:559
+#: wp-idea-stream.php:562
 msgid "Yes"
 msgstr "Oui"
 
-#: wp-idea-stream.php:559
+#: wp-idea-stream.php:562
 msgid "No"
 msgstr "Non"
 
-#: wp-idea-stream.php:711
+#: wp-idea-stream.php:714
 msgid ""
 "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s\">update "
 "your permalink structure</a> to something other than the default for it to "
@@ -707,7 +602,7 @@ msgstr ""
 "différent du format par défaut afin de permettre le fonctionnement de ce "
 "plugin."
 
-#: wp-idea-stream.php:716
+#: wp-idea-stream.php:719
 msgid ""
 "<strong>Idea Stream is almost ready</strong>. You must <a href=\"%s"
 "\">refresh your permalink structure</a> to something other than the default "
@@ -717,15 +612,15 @@ msgstr ""
 "\">rafraîchir votre structure de permaliens</a> à quelque chose de différent "
 "du format par défaut <strong>afin d'activer le post type Idée.</strong>."
 
-#: wp-idea-stream.php:749
+#: wp-idea-stream.php:752
 msgid "New comment on your post \"%s\""
 msgstr "Nouveau commentaire sur votre article \"%s\""
 
-#: wp-idea-stream.php:750
+#: wp-idea-stream.php:753
 msgid "Comment: "
 msgstr "Commenter:"
 
-#: wp-idea-stream.php:751
+#: wp-idea-stream.php:754
 msgid "Permalink: %s"
 msgstr "Permalien: %s"
 
@@ -734,8 +629,8 @@ msgid "WP Idea Stream"
 msgstr "WP Idea Stream"
 
 #. Plugin URI of the plugin/theme
-msgid "http://imath.owni.fr/tag/ideastream/"
-msgstr "http://imath.owni.fr/tag/ideastream/"
+msgid "http://imathi.eu/tag/ideastream/"
+msgstr "http://imathi.eu/tag/ideastream/"
 
 #. Description of the plugin/theme
 msgid "Adds an Idea Management System to your WordPress!"
@@ -747,8 +642,91 @@ msgid "imath"
 msgstr "imath"
 
 #. Author URI of the plugin/theme
-msgid "http://imath.owni.fr/"
-msgstr "http://imath.owni.fr/"
+msgid "http://imathi.eu/"
+msgstr "http://imathi.eu/"
+
+#~ msgid "Add a photo"
+#~ msgstr "Ajouter une image"
+
+#~ msgid "Url to your image"
+#~ msgstr "Url de votre image"
+
+#~ msgid "Text replacement for your picture"
+#~ msgstr "Texte alternatif pour votre image"
+
+#~ msgid "Image original height"
+#~ msgstr "Hauteur d&#39;origine de votre image"
+
+#~ msgid "Image original width"
+#~ msgstr "Largeur d&#39;origine de votre image"
+
+#~ msgid "Width in pixels for your picture (only numbers)"
+#~ msgstr "Largeur en pixels de votre image (seulement les chiffres)"
+
+#~ msgid "Max width authorized by admin is %s px"
+#~ msgstr "La largeur max. autorisée par l&#39;admin est %s px"
+
+#~ msgid "Image alignment"
+#~ msgstr "Alignement de l&#39;image"
+
+#~ msgid "None"
+#~ msgstr "Aucun"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Center"
+#~ msgstr "Centrée"
+
+#~ msgid "Add Picture"
+#~ msgstr "Ajouter l&#39;image"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "You must add a well formed url to your picture beginning by http://"
+#~ msgstr ""
+#~ "Vous devez entrer une url bien formée pour votre image (elle doit "
+#~ "démarrer par http://)"
+
+#~ msgid ""
+#~ "You must add a well formed url to your picture with only one reference to "
+#~ "http://"
+#~ msgstr ""
+#~ "Vous devez entrer une url bien formée pour votre image (elle ne doit "
+#~ "comporter qu&#39;une référence à http://)"
+
+#~ msgid "Please add the url of your picture"
+#~ msgstr "Merci d&#39;ajouter l&#39;url vers votre image"
+
+#~ msgid "Add link"
+#~ msgstr "Ajouter un lien"
+
+#~ msgid "Url of your link"
+#~ msgstr "Url de votre lien"
+
+#~ msgid "Caption of your link (selected text by default)"
+#~ msgstr "Alias de votre lien (par défaut le texte sélectionné)"
+
+#~ msgid "Tooltip (or title) of your link (selected text by default)"
+#~ msgstr ""
+#~ "Info-bulle (ou titre) de votre lien (par défaut le texte sélectionné)"
+
+#~ msgid "You must add a well formed url beginning par http://"
+#~ msgstr ""
+#~ "Vous devez entrer une url bien formée pour votre lien (elle doit démarrer "
+#~ "par http://)"
+
+#~ msgid "You must add a well formed url with only one reference to http://"
+#~ msgstr ""
+#~ "Vous devez entrer une url bien formée pour votre lien (elle ne doit "
+#~ "comporter qu&#39;une référence à http://)"
+
+#~ msgid "Please add an url."
+#~ msgstr "Merci d&#39;ajouter une url."
 
 #~ msgid "Featured post"
 #~ msgstr "Idées Distinguées"
