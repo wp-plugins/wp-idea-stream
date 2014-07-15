@@ -242,7 +242,7 @@ class WP_Idea_Stream_Best_Rated extends WP_Widget {
 			
 		$best_rated_list = $this->_get_best_rated_ideas($instance);
 		
-		$args = array('post_type'=>'ideas', 'post__in' => $best_rated_list);
+		$args = array('post_type'=>'ideas', 'post__in' => $best_rated_list, 'posts_per_page' => -1 );
 		
 		$br_query = new WP_Query( $args );
 		
