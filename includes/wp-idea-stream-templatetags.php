@@ -62,8 +62,8 @@ function the_idea_author_meta( $field ){
 	echo get_the_idea_author_meta( $field );
 }
 
-function wp_idea_stream_get_the_author($user_slug){
-	$user = get_userdatabylogin($user_slug);
+function wp_idea_stream_get_the_author( $user_slug = '' ){
+	$user = get_user_by( 'login', $user_slug );
 	return $user->ID;
 }
 
@@ -81,7 +81,7 @@ function wp_idea_stream_loggedin_user_displayed($noidea = false){
 
 function get_displayed_idea_author_meta($field){
 	global $user_slug;
-	$user = get_userdatabylogin($user_slug);
+	$user = get_user_by( 'login', $user_slug );
 	return $user->$field;
 }
 function displayed_idea_author_meta($field){
@@ -89,7 +89,7 @@ function displayed_idea_author_meta($field){
 }
 function get_displayed_idea_author(){
 	global $user_slug;
-	$user = get_userdatabylogin($user_slug);
+	$user = get_user_by( 'login', $user_slug );
 	return $user->display_name;
 }
 
@@ -371,6 +371,7 @@ function wpis_editor_the_content() {
 function wp_idea_stream_load_editor_new(){
 	global $wp_idea_stream_submit_errors;
 	if ( is_user_logged_in() ) {
+
 		if( isset( $_GET['moderation'] ) ){
 			$ideastream_moderation_message = get_option('_ideastream_moderation_message');
 			if( !$ideastream_moderation_message || $ideastream_moderation_message == "" ){
@@ -398,17 +399,20 @@ function wp_idea_stream_load_editor_new(){
 			}
 			
 			//editor args
-			$args = array("textarea_name" => "content",
+			$args = array( 
+				'textarea_name' => 'content',
 				'wpautop' => true,
 				'media_buttons' => false,
 				'editor_class' => 'ideastream_tinymce',
-				'textarea_rows' => get_option('default_post_edit_rows', 10),
+				'textarea_rows' => get_option( 'default_post_edit_rows', 10 ),
 				'teeny' => false,
 				'dfw' => false,
 				'tinymce' => true,
 				'quicktags' => false
 			);
 			
+			// Temporarly filter the editor
+			add_filter( 'mce_buttons', 'wp_idea_stream_teeny_button_filter', 10, 1 );
 			?>
 			
 			<form action="" method="post" enctype="multipart/form-data">
@@ -459,11 +463,13 @@ function wp_idea_stream_load_editor_new(){
 			</form>
 
 			<?php
+			// remove the editor filter
+			remove_filter( 'mce_buttons', 'wp_idea_stream_teeny_button_filter', 10, 1 );
 		}
 	}
 	else{
 		$ideastream_login_message = get_option('_ideastream_login_message');
-		if(!$ideastream_login_message || $ideastream_login_message==""){
+		if( empty( $ideastream_login_message ) ){
 			$ideastream_login_message = __('You need to be member of this site and logged in to submit an idea','wp-idea-stream');
 		}
 		?>

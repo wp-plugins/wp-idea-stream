@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: WP Idea Stream
-Plugin URI: http://imath.owni.fr/tag/ideastream/
+Plugin URI: http://imathi.eu/tag/ideastream/
 Description: Adds an Idea Management System to your WordPress!
-Version: 1.1
-Requires at least: 3.5
-Tested up to: 3.5
+Version: 1.1.1
+Requires at least: 3.9
+Tested up to: 4.0
 License: GNU/GPL 2
 Author: imath
-Author URI: http://imath.owni.fr/
+Author URI: http://imathi.eu/
 Text Domain: wp-idea-stream
 Domain Path: /languages/
 */
@@ -18,7 +18,7 @@ define ( 'WP_IDEA_STREAM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_IDEA_STREAM_PLUGI
 define ( 'WP_IDEA_STREAM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL_JS', plugins_url('js' , __FILE__) );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL_IMG',  plugins_url('images' , __FILE__) );
-define ( 'WP_IDEA_STREAM_VERSION', '1.1' );
+define ( 'WP_IDEA_STREAM_VERSION', '1.1.1' );
 
 /*custom post type*/
 add_action('init','wp_idea_stream_register_post_type');
@@ -142,7 +142,7 @@ function wp_idea_stream_catch_uri(){
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
 		wp_enqueue_style('style-idea', WP_IDEA_STREAM_PLUGIN_URL .'/css/single.css');
 		$template = locate_template( 'single-idea.php', true );
-		if(! empty( $template ) ) {
+		if ( empty( $template ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/single-idea.php', true );
 		} 
 		die();
@@ -152,7 +152,7 @@ function wp_idea_stream_catch_uri(){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
 		$template = locate_template('category-ideas.php', true);
-		if(!$template){
+		if ( empty( $template ) ) {
 			load_template(dirname( __FILE__ ) . '/templates/category-ideas.php', true);
 		} 
 		die();
@@ -162,7 +162,7 @@ function wp_idea_stream_catch_uri(){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
 		$template = locate_template('tag-ideas.php', true);
-		if(!$template){
+		if ( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/tag-ideas.php', true);
 		} 
 		die();
@@ -197,7 +197,7 @@ function wp_idea_stream_catch_uri(){
 		$q = new WP_Query ($args);
 		$idea_meta = array("all_count" => $q->found_posts, "per_page" => $q->query_vars["posts_per_page"]);
 		$template = locate_template('idea-author.php', true);
-		if(!$template){
+		if ( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/idea-author.php', true);
 		} 
 		die();
@@ -220,7 +220,7 @@ function wp_idea_stream_catch_uri(){
 		$q = new WP_Query ($args);
 		$idea_meta = array("all_count" => $q->found_posts, "per_page" => $q->query_vars["posts_per_page"]);
 		$template = locate_template('featured-ideas.php', true);
-		if(!$template){
+		if( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/featured-ideas.php', true);
 		} 
 		die();
@@ -240,7 +240,7 @@ function wp_idea_stream_catch_uri(){
 		$q = new WP_Query ($args);
 		$idea_meta = array("all_count" => $q->found_posts, "per_page" => $q->query_vars["posts_per_page"]);
 		$template = locate_template('all-ideas.php', true);
-		if(!$template){
+		if( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/all-ideas.php', true);
 		} 
 		die();
@@ -603,7 +603,7 @@ function wp_idea_stream_wp_pages_filter( $page_html ) {
 add_filter( 'wp_dropdown_pages', 'wp_idea_stream_wp_pages_filter' );
 
 function wp_idea_stream_wp_page_on_front_update( $oldvalue, $newvalue ) {
-	if ( !is_admin() || !is_super_admin() )
+	if ( ! is_admin() || ! is_super_admin() || empty( $_POST['page_on_front'] ) )
 		return false;
 
 	if ( 'all-ideas' == $_POST['page_on_front'] )
