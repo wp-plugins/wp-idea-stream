@@ -372,8 +372,8 @@ function wp_idea_stream_add_footer_js(){
 						readOnly:true,
 						start:score,
 						noRatedMsg:'<?php _e("not rated yet","wp-idea-stream");?>',
-					<?php if(get_option('_ideastream_hint_list')!="" && count(get_option('_ideastream_hint_list')) >0){
-						$hintlist = "['".implode("','", get_option('_ideastream_hint_list'))."']";
+					<?php if( get_option( '_ideastream_hint_list' ) != "" && count( get_option( '_ideastream_hint_list' ) ) >0 ){
+						$hintlist = "['". implode("','", array_map( 'esc_js', (array) get_option( '_ideastream_hint_list' ) ) )."']";
 						echo 'hintList:'.$hintlist.',';
 						echo 'number:'.count(get_option('_ideastream_hint_list')).',';
 					}
@@ -450,7 +450,7 @@ function wp_idea_stream_ratings_single(){
 		target:     '.rating-info',
 		noRatedMsg:'<?php _e("not rated yet","wp-idea-stream");?>',
 	<?php if(get_option('_ideastream_hint_list')!="" && count(get_option('_ideastream_hint_list')) >0){
-		$hintlist = "['".implode("','", get_option('_ideastream_hint_list'))."']";
+		$hintlist = "['". implode( "','", array_map( 'esc_js', (array) get_option('_ideastream_hint_list') ) )."']";
 		echo 'hintList:'.$hintlist.',';
 		echo 'number:'.count(get_option('_ideastream_hint_list')).',';
 	}

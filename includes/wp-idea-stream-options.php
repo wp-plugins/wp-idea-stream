@@ -27,8 +27,9 @@ if( ! empty( $_POST['_ideastream_save_options'] ) ) {
 	
 	//builtin ratings
 	update_option('_ideastream_builtin_rating', $_POST['_ideastream_builtin_rating']);
-	if(strlen($_POST['_ideastream_hint_list'])>1){
-		update_option('_ideastream_hint_list', explode(',', str_replace(', ',',', $_POST['_ideastream_hint_list'])));
+	if( strlen( $_POST['_ideastream_hint_list'] ) > 1 ){
+		$hintlist = wp_unslash( $_POST['_ideastream_hint_list'] );
+		update_option('_ideastream_hint_list', explode(',', str_replace(', ',',', $hintlist ) ) );
 	}
 	
 	//sharing options
