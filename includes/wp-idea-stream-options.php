@@ -1,6 +1,6 @@
 <?php
 //Idea Stream Options
-if($_POST['_ideastream_save_options']){
+if( ! empty( $_POST['_ideastream_save_options'] ) ) {
 	//editor img and link button
 	$editor_options = array('image'=>intval($_POST['_idea_editor_image']),'link'=>intval($_POST['_idea_editor_link']));
 	update_option('_ideastream_editor_config', $editor_options);
@@ -98,7 +98,7 @@ function is_option_checked($option, $value){
 								<?php _e('Deactivate');?>
 							</td>
 							<th><label for="_ideastream_moderation_message"><?php _e('Awaiting moderation message','wp-idea-stream');?></label></th>
-							<td><textarea rows="2" cols="40" name="_ideastream_moderation_message"><?php echo get_option(_ideastream_moderation_message);?></textarea></td>
+							<td><textarea rows="2" cols="40" name="_ideastream_moderation_message"><?php echo get_option( '_ideastream_moderation_message' );?></textarea></td>
 						</tr>
 						<tr><th><label for="_idea_editor_image_size"><?php _e('Image max width in pixels <small>(default is 300)</small>','wp-idea-stream');?></label></th>
 							<td><input type="text" value="<?php echo get_option('_ideastream_image_width');?>" name="_idea_editor_image_size">

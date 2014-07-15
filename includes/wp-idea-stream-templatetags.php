@@ -29,7 +29,7 @@ function wp_idea_stream_desc_edit(){
 }
 
 function wp_idea_stream_new_form(){
-	return get_bloginfo('siteurl').'/is/new-idea/';
+	return home_url( '/is/new-idea/' );
 }
 
 function wp_idea_stream_posted_in_cat(){
@@ -44,7 +44,7 @@ function wp_idea_stream_posted_in_tag(){
 
 function get_author_idea_url($id){
 	$user_info = get_userdata($id);
-	$link = get_bloginfo('siteurl').'/is/idea-author/'.$user_info->user_login.'/';
+	$link = home_url( '/is/idea-author/'.$user_info->user_login.'/' );
 	return $link;
 }
 
@@ -334,45 +334,47 @@ function is_user_allowed_to_feature_ideas(){
 }
 
 function is_new_idea(){
-	if(ereg('is/new-idea', $_SERVER['REQUEST_URI'])){
+	if( strpos( $_SERVER['REQUEST_URI'], 'is/new-idea') !== false ) {
 		return true;
 	}
 	else return false;
 }
 function is_all_ideas(){
-	if(ereg('is/all-ideas', $_SERVER['REQUEST_URI'])){
+	if( strpos( $_SERVER['REQUEST_URI'], 'is/all-ideas' ) !== false ) {
 		return true;
 	}
 	else return false;
 }
 function is_featured_ideas(){
-	if(ereg('is/featured-ideas', $_SERVER['REQUEST_URI'])){
+	if( strpos( $_SERVER['REQUEST_URI'], 'is/featured-ideas' ) !== false ) {
 		return true;
 	}
 	else return false;
 }
 function is_idea_author(){
-	if(ereg('is/idea-author', $_SERVER['REQUEST_URI'])){
+	if( strpos( $_SERVER['REQUEST_URI'], 'is/idea-author' ) !== false ) {
 		return true;
 	}
 	else return false;
 }
 
 function wpis_editor_the_title() {
-	echo apply_filters( 'wpis_editor_the_title', $_POST["_wp_is_title"] ); 
+	$title = ! empty( $_POST["_wp_is_title"] ) ? $_POST["_wp_is_title"] : '';
+	echo apply_filters( 'wpis_editor_the_title', $title ); 
 }
 
 function wpis_editor_the_content() {
-	return apply_filters( 'wpis_editor_the_content', $_POST["content"] );
+	$content = ! empty( $_POST["content"] ) ? $_POST["content"] : '';
+	return apply_filters( 'wpis_editor_the_content', $content );
 }
 
 function wp_idea_stream_load_editor_new(){
 	global $wp_idea_stream_submit_errors;
-	if(is_user_logged_in()){
-		if(isset($_GET['moderation'])){
+	if ( is_user_logged_in() ) {
+		if( isset( $_GET['moderation'] ) ){
 			$ideastream_moderation_message = get_option('_ideastream_moderation_message');
-			if(!$ideastream_moderation_message || $ideastream_moderation_message==""){
-				$ideastream_moderation_message = __('Your idea is awaiting moderation. Thanks for submitting it.','wp-idea-stream');
+			if( !$ideastream_moderation_message || $ideastream_moderation_message == "" ){
+				$ideastream_moderation_message = __( 'Your idea is awaiting moderation. Thanks for submitting it.', 'wp-idea-stream' );
 			}
 			?>
 				<div id="ideastream_moderation"><p><?php echo $ideastream_moderation_message;?></p></div>
@@ -505,4 +507,56 @@ function wp_idea_stream_load_twentyup() {
 }
 
 add_action( 'wp_idea_stream_manage_twentyup', 'wp_idea_stream_load_twentyup' );
-?>
+
+
+function wp_idea_stream_dummy_post() {
+	global $wp_query, $post;
+
+	$dummy = array(
+		'ID'                    => 0,
+		'post_status'           => 'publish',
+		'post_author'           => 0,
+		'post_parent'           => 0,
+		'post_type'             => 'page',
+		'post_date'             => 0,
+		'post_date_gmt'         => 0,
+		'post_modified'         => 0,
+		'post_modified_gmt'     => 0,
+		'post_content'          => '',
+		'post_title'            => __( 'Submit your idea!', 'wp-idea-stream' ),
+		'post_excerpt'          => '',
+		'post_content_filtered' => '',
+		'post_mime_type'        => '',
+		'post_password'         => '',
+		'post_name'             => '',
+		'guid'                  => '',
+		'menu_order'            => 0,
+		'pinged'                => '',
+		'to_ping'               => '',
+		'ping_status'           => '',
+		'comment_status'        => 'closed',
+		'comment_count'         => 0,
+		'filter'                => 'raw',
+
+		'is_404'                => false,
+		'is_page'               => true,
+		'is_single'             => false,
+		'is_archive'            => false,
+		'is_tax'                => false,
+	);
+
+	// Set the $post global
+	$post = new WP_Post( (object) $dummy );
+
+	// Copy the new post global into the main $wp_query
+	$wp_query->post       = $post;
+	$wp_query->posts      = array( $post );
+
+	// Prevent comments form from appearing
+	$wp_query->post_count = 1;
+	$wp_query->is_404     = $dummy['is_404'];
+	$wp_query->is_page    = $dummy['is_page'];
+	$wp_query->is_single  = $dummy['is_single'];
+	$wp_query->is_archive = $dummy['is_archive'];
+	$wp_query->is_tax     = $dummy['is_tax'];
+}

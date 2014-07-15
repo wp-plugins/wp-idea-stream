@@ -115,7 +115,7 @@ require_once(dirname(__FILE__).'/includes/wp-idea-stream-filters.php');
 add_action('template_redirect','wp_idea_stream_catch_uri', 99);
 
 function wp_idea_stream_catch_uri(){
-	global $idea_meta, $wp_query, $wp_idea_stream_submit_errors;
+	global $idea_meta, $wp_query, $wp_idea_stream_submit_errors, $post;
 	if(isset($_POST['_wp_is_submit_idea'])){
 		require_once(dirname(__FILE__).'/includes/wp-idea-stream-add-new.php');
 	}
@@ -137,13 +137,13 @@ function wp_idea_stream_catch_uri(){
 	
 	do_action( 'wp_idea_stream_manage_twentyup');
 	
-	if(get_query_var('ideas') && !get_query_var('feed')){
+	if( get_query_var( 'ideas' ) && ! get_query_var('feed') ){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
 		wp_enqueue_style('style-idea', WP_IDEA_STREAM_PLUGIN_URL .'/css/single.css');
-		$template = locate_template('single-idea.php', true);
-		if(!$template){
-			load_template(dirname( __FILE__ ) . '/templates/single-idea.php', true);
+		$template = locate_template( 'single-idea.php', true );
+		if(! empty( $template ) ) {
+			load_template( dirname( __FILE__ ) . '/templates/single-idea.php', true );
 		} 
 		die();
 	}
@@ -157,7 +157,7 @@ function wp_idea_stream_catch_uri(){
 		} 
 		die();
 	}
-	elseif(get_query_var('tag-ideas') && !get_query_var('feed')){
+	elseif( get_query_var('tag-ideas') && ! get_query_var('feed') ) {
 		$idea_meta = array("all_count" => $wp_query->found_posts, "per_page" => $wp_query->query_vars['posts_per_page']);
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
@@ -167,26 +167,25 @@ function wp_idea_stream_catch_uri(){
 		} 
 		die();
 	}
-	elseif(get_query_var('pagename') == 'new-idea'){
+	elseif( get_query_var('pagename') == 'new-idea' ) {
 		status_header( 200 );
-		$wp_query->is_404 = false;
-		$wp_query->is_page = true;
+		wp_idea_stream_dummy_post();
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('si-tag-editor', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.tag.editor-min.js', 'jquery');
 		wp_enqueue_style('style-subidea', WP_IDEA_STREAM_PLUGIN_URL .'/css/style.css');
-		$template = locate_template('new-idea.php', true);
-		if(!$template){
-			load_template(dirname( __FILE__ ) . '/templates/new-idea.php', true);
+		$template = locate_template( 'new-idea.php', true );
+		if ( empty( $template ) ) {
+			load_template( dirname( __FILE__ ) . '/templates/new-idea.php', true );
 		} 
 		die();
 	}
-	elseif( get_query_var('pagename') == 'idea-author'){
+	elseif( get_query_var('pagename') == 'idea-author' ){
 		status_header( 200 );
 		$wp_query->is_404 = false;
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
 		global $user_slug;
-		$user_slug = get_query_var('user_slug');
+		$user_slug = get_query_var( 'user_slug' );
 		$pagid = 1;
 		if(isset($_GET['pagid'])) $pagid = $_GET['pagid'];
 		$args = array(
@@ -203,7 +202,7 @@ function wp_idea_stream_catch_uri(){
 		} 
 		die();
 	}
-	elseif(get_query_var('pagename') == 'featured-ideas'){
+	elseif( get_query_var('pagename') == 'featured-ideas' ){
 		status_header( 200 );
 		$wp_query->is_404 = false;
 		$wp_query->is_page = true;
@@ -226,7 +225,7 @@ function wp_idea_stream_catch_uri(){
 		} 
 		die();
 	}
-	elseif(get_query_var('pagename') == 'all-ideas' || wp_idea_stream_is_all_ideas_onfront()){
+	elseif( get_query_var('pagename') == 'all-ideas' || wp_idea_stream_is_all_ideas_onfront() ){
 		status_header( 200 );
 		$wp_query->is_404 = false;
 		wp_enqueue_script('jquery');
@@ -251,15 +250,15 @@ function wp_idea_stream_catch_uri(){
 add_action('wp_head', "wp_idea_stream_add_catandtag_feed");
 
 function wp_idea_stream_add_catandtag_feed(){
-	if(get_query_var('category-ideas')){
-		$title = get_bloginfo('sitename') ." &raquo; ".get_query_var('category-ideas');
-		$feed = get_bloginfo('siteurl') . $_SERVER['REQUEST_URI'] .'feed/';
+	if( get_query_var( 'category-ideas' ) ){
+		$title = get_bloginfo( 'name' ) . " &raquo; ". get_query_var( 'category-ideas' );
+		$feed = home_url( $_SERVER['REQUEST_URI'] .'feed/' );
 	}
-	if(get_query_var('tag-ideas')){
-		$title = get_bloginfo('sitename') ." &raquo; ".get_query_var('tag-ideas');
-		$feed = get_bloginfo('siteurl') . $_SERVER['REQUEST_URI'] .'feed/';
+	if( get_query_var( 'tag-ideas' ) ){
+		$title = get_bloginfo( 'name' ) . " &raquo; " . get_query_var( 'tag-ideas' );
+		$feed = home_url( $_SERVER['REQUEST_URI'] .'feed/' );
 	} 
-	if($feed){
+	if( ! empty( $feed ) ){
 		?>
 		<link rel="alternate" type="application/rss+xml" title="<?php echo $title;?>" href="<?php echo $feed;?>">
 		<?php
@@ -272,19 +271,19 @@ function wp_idea_stream_is_all_ideas_onfront(){
 	else return false;
 }
 
-function wp_idea_stream_page_title($title){
+function wp_idea_stream_page_title( $title ){
 	global $user_slug;
-	if(is_new_idea()){
-		return __('New Idea', 'wp-idea-stream') . " | ";
+	if( is_new_idea() ){
+		return __( 'New Idea', 'wp-idea-stream' ) . " | ";
 	}
-	if(is_all_ideas() || (is_home() && get_option( 'page_on_front' ) == 'all-ideas' && !is_featured_ideas())){
-		return __('All Ideas','wp-idea-stream') . " | ";
+	if( is_all_ideas() || ( is_home() && get_option( 'page_on_front' ) == 'all-ideas' && !is_featured_ideas() ) ){
+		return __( 'All Ideas','wp-idea-stream' ) . " | ";
 	}
-	if(is_featured_ideas()){
-		return __('Featured Ideas','wp-idea-stream') . " | ";
+	if( is_featured_ideas() ){
+		return __( 'Featured Ideas', 'wp-idea-stream' ) . " | ";
 	}
-	if(is_idea_author()){
-		return __('Author Ideas','wp-idea-stream') . " | " . $user_slug . " | ";
+	if( is_idea_author() ){
+		return __( 'Author Ideas', 'wp-idea-stream' ) . " | " . $user_slug . " | ";
 	}
 	else return $title;
 }
@@ -293,22 +292,22 @@ add_filter('wp_title','wp_idea_stream_page_title');
 
 function wp_idea_stream_bp_page_title($title){
 	global $user_slug;
-	if(is_new_idea()){
-		return get_option('blogname') . " | ".__('New Idea', 'wp-idea-stream');
+	if( is_new_idea() ){
+		return get_bloginfo( 'name' ) . " | " . __( 'New Idea', 'wp-idea-stream' );
 	}
-	if(is_all_ideas() || (is_home() && get_option( 'page_on_front' ) == 'all-ideas' && !is_featured_ideas())){
-		return get_option('blogname') . " | ".__('All Ideas','wp-idea-stream');
+	if( is_all_ideas() || ( is_home() && get_option( 'page_on_front' ) == 'all-ideas' && ! is_featured_ideas() ) ){
+		return get_bloginfo( 'name' ) . " | " . __( 'All Ideas','wp-idea-stream');
 	}
 	if(is_featured_ideas()){
-		return get_option('blogname') . " | ".__('Featured Ideas','wp-idea-stream');
+		return get_bloginfo( 'name' ) . " | " . __( 'Featured Ideas','wp-idea-stream' );
 	}
 	if(is_idea_author()){
-		return get_option('blogname') . " | ".__('Author Ideas','wp-idea-stream') . " | " . $user_slug;
+		return get_bloginfo( 'name' ) . " | " . __( 'Author Ideas','wp-idea-stream' ) . " | " . $user_slug;
 	}
 	else return $title;
 }
 
-if(function_exists('bp_init')){
+if( function_exists( 'bp_init' ) ){
 	add_filter('bp_page_title', 'wp_idea_stream_bp_page_title');
 }
 
@@ -580,7 +579,7 @@ function wp_idea_stream_feature_idea_manage(){
 /**
 * Widgets !
 */
-require_once(dirname(__FILE__).'/includes/wp-idea-stream-widgets.php');
+require_once( dirname(__FILE__).'/includes/wp-idea-stream-widgets.php' );
 
 
 /**
@@ -639,11 +638,11 @@ add_filter( 'the_posts', 'wp_idea_stream_fix_the_posts_on_activity_front' );
 function wp_idea_stream_adminbar_menu($wp_admin_bar){
 	if(is_user_logged_in()){
 		global $current_user;
-		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream', 'title' => __('IdeaStream','wp-idea-stream'), 'href' => get_bloginfo('siteurl').'/is/all-ideas/' ) );
-		$wp_admin_bar->add_menu( array( 'parent' => 'wpideastream', 'title' => __('All Ideas','wp-idea-stream'), 'href' => get_bloginfo('siteurl').'/is/all-ideas/' ) );
-		$wp_admin_bar->add_menu( array( 'parent' => 'wpideastream', 'title' => __('My Ideas','wp-idea-stream'), 'href' => get_author_idea_url($current_user->ID) ) );
-		$wp_admin_bar->add_menu( array( 'parent' => 'wpideastream', 'title' => __('Featured Ideas','wp-idea-stream'), 'href' => get_bloginfo('siteurl').'/is/featured-ideas/' ) );
-		$wp_admin_bar->add_menu( array( 'parent' => 'wpideastream', 'title' => __('New Idea','wp-idea-stream'), 'href' => get_bloginfo('siteurl').'/is/new-idea/' ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream', 'title' => __('IdeaStream','wp-idea-stream'), 'href' => home_url( '/is/all-ideas/' ) ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream-all', 'parent' => 'wpideastream', 'title' => __('All Ideas','wp-idea-stream'), 'href' => home_url( '/is/all-ideas/' ) ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream-my', 'parent' => 'wpideastream', 'title' => __('My Ideas','wp-idea-stream'), 'href' => get_author_idea_url( $current_user->ID ) ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream-featured', 'parent' => 'wpideastream', 'title' => __('Featured Ideas','wp-idea-stream'), 'href' => home_url( '/is/featured-ideas/' ) ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wpideastream-new', 'parent' => 'wpideastream', 'title' => __('New Idea','wp-idea-stream'), 'href' => home_url( '/is/new-idea/' ) ) );
 	}
 }
 
@@ -664,8 +663,8 @@ add_action('admin_print_styles','wp_idea_stream_print_admin_css');
 
 function wp_idea_stream_print_admin_css(){
 	global $post;
-	if($_GET['page']=="ideastream-options" || $_GET['post_type']=="ideas" || get_post_type($post->ID)=="ideas"){
-		wp_enqueue_style('ideastream-admin-css', WP_IDEA_STREAM_PLUGIN_URL.'/css/admin.css');
+	if( ( ! empty( $_GET['page'] ) && $_GET['page'] == "ideastream-options" ) || ( ! empty( $_GET['post_type'] ) && $_GET['post_type'] == "ideas" ) || ( ! empty( $post->ID ) && get_post_type( $post->ID ) == "ideas" ) ){
+		wp_enqueue_style( 'ideastream-admin-css', WP_IDEA_STREAM_PLUGIN_URL.'/css/admin.css' );
 	}
 }
 
@@ -691,7 +690,7 @@ function wp_idea_stream_activate(){
 	if( get_option('_ideastream_vestion') && get_option('_ideastream_vestion') != WP_IDEA_STREAM_VERSION){
 		update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
 	}		
-	elseif( !get_option('_ideastream_vestion') ){
+	elseif( ! get_option('_ideastream_vestion' ) ){
 		wp_idea_stream_add_rewrite_rules();
 		wp_idea_stream_register_post_type();
 		wp_idea_stream_register_taxo();
@@ -703,15 +702,15 @@ function wp_idea_stream_activate(){
 function wp_idea_stream_activation_notice() {
 	global $wp_rewrite;
 
-	if ( !is_admin() )
+	if ( ! is_admin() )
 		return false;
 
-	if ( empty( $wp_rewrite->permalink_structure ) && !$_POST['permalink_structure'] ) { ?>
+	if ( empty( $wp_rewrite->permalink_structure ) && ! empty( $_POST['permalink_structure'] ) ) { ?>
 		<div id="message" class="updated fade">
 			<p><?php printf( __( '<strong>Idea Stream is almost ready</strong>. You must <a href="%s">update your permalink structure</a> to something other than the default for it to work.', 'wp-idea-stream' ), admin_url( 'options-permalink.php' ) ) ?></p>
 		</div><?php
 	}
-	elseif(!$wp_rewrite->extra_permastructs['ideas']){?>
+	elseif( empty( $wp_rewrite->extra_permastructs['ideas'] ) ) {?>
 		<div id="message" class="updated fade">
 			<p><?php printf( __( '<strong>Idea Stream is almost ready</strong>. You must <a href="%s">refresh your permalink structure</a> to something other than the default <strong>in order to activate the Ideas post type.</strong>', 'wp-idea-stream' ), admin_url( 'options-permalink.php' ) ) ?></p>
 		</div><?php
@@ -721,11 +720,11 @@ add_action( 'admin_notices', 'wp_idea_stream_activation_notice' );
 
 add_filter('body_class', 'wp_idea_stream_fix_404_new_idea');
 
-function wp_idea_stream_fix_404_new_idea($bodyclass){
-	if(is_new_idea()){
-		for($i=0;$i<count($bodyclass);$i++){
-			if($bodyclass[$i]=="error404"){
-				$bodyclass[$i]="is_new_idea";
+function wp_idea_stream_fix_404_new_idea( $bodyclass ){
+	if( is_new_idea() ){
+		for( $i=0; $i < count( $bodyclass) ; $i++){
+			if( $bodyclass[$i] == "error404" ){
+				$bodyclass[$i] = "is_new_idea";
 			}
 		}
 		return $bodyclass;
