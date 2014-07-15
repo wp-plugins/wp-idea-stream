@@ -362,7 +362,7 @@ function wp_idea_stream_add_footer_js(){
 					});
 				});
 			<?php endif;?>
-		<?php elseif($builtin_rating_option != "no"):?>
+		<?php elseif ( $builtin_rating_option != "no" ): ?>
 			jQuery(document).ready(function(){
 				jQuery(".rating-ideas").each(function(){
 					var score = jQuery(this).attr("rel");
@@ -372,15 +372,19 @@ function wp_idea_stream_add_footer_js(){
 						readOnly:true,
 						start:score,
 						noRatedMsg:'<?php _e("not rated yet","wp-idea-stream");?>',
-					<?php if( get_option( '_ideastream_hint_list' ) != "" && count( get_option( '_ideastream_hint_list' ) ) >0 ){
+					<?php if( get_option( '_ideastream_hint_list' ) != "" && count( get_option( '_ideastream_hint_list' ) ) > 0 ){
 						$hintlist = "['". implode("','", array_map( 'esc_js', (array) get_option( '_ideastream_hint_list' ) ) )."']";
 						echo 'hintList:'.$hintlist.',';
-						echo 'number:'.count(get_option('_ideastream_hint_list')).',';
+						echo 'number:'.count( get_option( '_ideastream_hint_list' ) ).',';
 					}
 					?>
 						path: '<?php echo WP_IDEA_STREAM_PLUGIN_URL;?>/images'
 				    });
 				});
+
+				jQuery( ".rating-ideas").on( 'click', function() {
+					location.href = jQuery( this ).data( 'link' );
+				} );
 			});
 		<?php endif;?>
 		</script>
@@ -476,7 +480,7 @@ function wp_idea_stream_ratings(){
 		$start = $average_vote;
 	}
 	?>
-	<div id="rates-<?php the_ID(); ?>" class="rating-ideas" rel="<?php echo $start;?>"></div>
+	<div id="rates-<?php the_ID(); ?>" class="rating-ideas" rel="<?php echo $start;?>" data-link="<?php the_permalink(); ?>"></div>
 	<?php
 }
 
