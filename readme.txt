@@ -2,9 +2,9 @@
 Contributors: imath
 Donate link: http://imathi.eu/donations/
 Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
-Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 1.1
+Requires at least: 3.9
+Tested up to: 4.0
+Stable tag: 1.2
 License: GNU/GPL 2
 
 Adds an Idea Management System to your WordPress!
@@ -19,9 +19,7 @@ In IdeaStream admin menu, you'll be able to customize the behavior of the plugin
 Once the plugin is installed, simply add at least one category of the Idea Post Type from the back end in order to activate the submit form.
 You can specify the IdeaStream list of ideas to show directly on your blog home from the reading options.
 
-Since version 1.1, **this plugin requires WordPress 3.5** and is optimized for twentytwelve theme.
-
-If you are still using twentyten or twentyeleven with WordPress 3.5, please go to the FAQ section of this plugin.
+Since version 1.2, **this plugin requires WordPress 3.9** and is optimized for twentytwelve theme.
 
 If you're using another theme, i advise you to copy the templates of WP Idea Stream templates dir and then paste them into your theme's folder.
 Then you can edit the copy you put in your theme's folder to suit your design. If an IdeaStream template is found in active theme dir, it overrides the one in the plugin dir.
@@ -39,9 +37,9 @@ Activate WP Idea Manager in the "Plugins" admin panel using the "Activate" link.
 
 == Frequently Asked Questions ==
 
-= I'm not using WordPress 3.5, is this plugin compatible with an older version ? =
-Version 1.1 of the plugin requires WordPress 3.5, if you want to use this plugin with an earlier version of WordPress, you'll need to download a previous version of the plugin.
-I advise you to browse the [different versions](http://wordpress.org/extend/plugins/wp-idea-stream/developers/ "Other version") available and choose version 1.0.3 if you run a WordPress from 3.1 to 3.4.2.
+= I'm not using WordPress 3.9, is this plugin compatible with an older version ? =
+Version 1.2 of the plugin requires WordPress 3.9, if you want to use this plugin with an earlier version of WordPress, you'll need to download a previous version of the plugin.
+I advise you to browse the [different versions](http://wordpress.org/extend/plugins/wp-idea-stream/developers/ "Other version") available and choose version 1.0.3 if you run a WordPress from 3.1 to 3.4.2 and 1.1 if you run a WordPress from 3.5.
 
 = I'm still using the twentyeleven or twentyten theme with WordPress 3.5, how can i make the different templates go along with it ? =
 You can download from my dorpbox a [zip file](https://dl.dropbox.com/u/2322874/templates-2010-11.zip "my dropbox") containing the idea templates optimized for this 2 themes. Once you've downloaded them, simply copy and paste them
@@ -63,6 +61,14 @@ Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or u
 4. Widgets
 
 == Changelog ==
+
+= 1.2 =
+
+* requires WordPress 3.9
+* This version fixes some bugs and notice errors
+* It gives up custom tinyMCE plugin previously used to add links or image in favor of the WordPress built-in ones.
+* It fixes the slashes bug when defining custom captions for stars.
+* It adds a link on the rating stars when not viewing the idea in its single template. When on an archive template, clicking on the stars will open the idea so that the user can rate it.
 
 = 1.1 =
 
@@ -92,6 +98,9 @@ Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or u
 * Plugin birth..
 
 == Upgrade Notice ==
+
+= 1.2 =
+Please be sure to use at least WordPress 3.9 before upgrading/downloading this plugin.
 
 = 1.1 =
 Please be sure to use at least WordPress 3.5 before upgrading/downloading this plugin.
