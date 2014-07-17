@@ -3,7 +3,7 @@
 Plugin Name: WP Idea Stream
 Plugin URI: http://imathi.eu/tag/ideastream/
 Description: Adds an Idea Management System to your WordPress!
-Version: 1.1.1
+Version: 1.2
 Requires at least: 3.9
 Tested up to: 4.0
 License: GNU/GPL 2
@@ -18,7 +18,7 @@ define ( 'WP_IDEA_STREAM_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_IDEA_STREAM_PLUGI
 define ( 'WP_IDEA_STREAM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WP_IDEA_STREAM_PLUGIN_NAME );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL_JS', plugins_url('js' , __FILE__) );
 define ( 'WP_IDEA_STREAM_PLUGIN_URL_IMG',  plugins_url('images' , __FILE__) );
-define ( 'WP_IDEA_STREAM_VERSION', '1.1.1' );
+define ( 'WP_IDEA_STREAM_VERSION', '1.2' );
 
 /*custom post type*/
 add_action('init','wp_idea_stream_register_post_type');
@@ -50,7 +50,7 @@ function wp_idea_stream_register_post_type(){
 			'search_items'=> __('Search Ideas','wp-idea-stream'),
 			'not_found'=>__('No Ideas Found','wp-idea-stream'),
 			'not_found_in_trash'=>__('No Ideas Found in Trash','wp-idea-stream')),
-		'menu_icon' => WP_IDEA_STREAM_PLUGIN_URL.'/images/is-logomenu.png',
+		'menu_icon' => 'dashicons-lightbulb',
 		'taxonomies'=>array(
 			'tag-ideas', 'category-ideas'),
 			);
@@ -100,10 +100,10 @@ function wp_idea_stream_register_taxo(){
 			'add_or_remove_items'=> __('Add or remove tags','wp-idea-stream'),
 			'choose_from_most_used'=> __('Choose from the most popular tags','wp-idea-stream')),
 		);
-	
+
 	/*register the Category taxo*/
 	register_taxonomy('category-ideas', array('ideas'), $idea_cats_args);
-	
+
 	/*register the Tag taxo*/
 	register_taxonomy('tag-ideas', array('ideas'), $idea_tags_args);
 }
@@ -134,9 +134,9 @@ function wp_idea_stream_catch_uri(){
 		wp_redirect($link);
 		die();
 	}
-	
+
 	do_action( 'wp_idea_stream_manage_twentyup');
-	
+
 	if( get_query_var( 'ideas' ) && ! get_query_var('feed') ){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jraty', WP_IDEA_STREAM_PLUGIN_URL .'/js/jquery.raty.min.js', 'jquery');
@@ -144,7 +144,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template( 'single-idea.php', true );
 		if ( empty( $template ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/single-idea.php', true );
-		} 
+		}
 		die();
 	}
 	elseif(get_query_var('category-ideas') && !get_query_var('feed')){
@@ -154,7 +154,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template('category-ideas.php', true);
 		if ( empty( $template ) ) {
 			load_template(dirname( __FILE__ ) . '/templates/category-ideas.php', true);
-		} 
+		}
 		die();
 	}
 	elseif( get_query_var('tag-ideas') && ! get_query_var('feed') ) {
@@ -164,7 +164,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template('tag-ideas.php', true);
 		if ( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/tag-ideas.php', true);
-		} 
+		}
 		die();
 	}
 	elseif( get_query_var('pagename') == 'new-idea' ) {
@@ -176,7 +176,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template( 'new-idea.php', true );
 		if ( empty( $template ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/new-idea.php', true );
-		} 
+		}
 		die();
 	}
 	elseif( get_query_var('pagename') == 'idea-author' ){
@@ -199,7 +199,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template('idea-author.php', true);
 		if ( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/idea-author.php', true);
-		} 
+		}
 		die();
 	}
 	elseif( get_query_var('pagename') == 'featured-ideas' ){
@@ -222,7 +222,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template('featured-ideas.php', true);
 		if( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/featured-ideas.php', true);
-		} 
+		}
 		die();
 	}
 	elseif( get_query_var('pagename') == 'all-ideas' || wp_idea_stream_is_all_ideas_onfront() ){
@@ -242,7 +242,7 @@ function wp_idea_stream_catch_uri(){
 		$template = locate_template('all-ideas.php', true);
 		if( empty( $template ) ){
 			load_template(dirname( __FILE__ ) . '/templates/all-ideas.php', true);
-		} 
+		}
 		die();
 	}
 }
@@ -257,7 +257,7 @@ function wp_idea_stream_add_catandtag_feed(){
 	if( get_query_var( 'tag-ideas' ) ){
 		$title = get_bloginfo( 'name' ) . " &raquo; " . get_query_var( 'tag-ideas' );
 		$feed = home_url( $_SERVER['REQUEST_URI'] .'feed/' );
-	} 
+	}
 	if( ! empty( $feed ) ){
 		?>
 		<link rel="alternate" type="application/rss+xml" title="<?php echo $title;?>" href="<?php echo $feed;?>">
@@ -486,7 +486,7 @@ function wp_idea_stream_ratings(){
 
 function wp_idea_stream_vote_callback(){
 	global $current_user;
-	$user_id = $current_user->ID; 
+	$user_id = $current_user->ID;
 	$idea_id = $_POST['idea'];
 	if(strlen($_POST['vote']) >1 ){
 		$vote_user = substr($_POST['vote'], 0, 1);
@@ -500,7 +500,7 @@ function wp_idea_stream_vote_callback(){
 				if($vote == $vote_user){
 					$the_votes[$vote]["user_ids"] = array_merge($array_ids["user_ids"], array($user_id));
 				}
-				else{ 
+				else{
 					$the_votes[$vote_user]["user_ids"] = array($user_id);
 				}
 			}
@@ -508,7 +508,7 @@ function wp_idea_stream_vote_callback(){
 		}
 	}
 	else $the_votes[$vote_user]["user_ids"] = array($user_id);
-	
+
 	update_post_meta($idea_id, "_ideastream_rates", $the_votes);
 	$average_rate = wp_idea_stream_count_ratings($the_votes);
 	update_post_meta($idea_id, "_ideastream_average_rate", $average_rate);
@@ -563,7 +563,7 @@ function wp_idea_stream_feature_idea_form(){
 		</div>
 		<?php
 	}
-	
+
 }
 
 add_action('comment_post','wp_idea_stream_feature_idea_manage');
@@ -591,7 +591,7 @@ require_once( dirname(__FILE__).'/includes/wp-idea-stream-widgets.php' );
 * Inspired by BuddyPress theme activity on front feature
 */
 function wp_idea_stream_wp_pages_filter( $page_html ) {
-	
+
 	if ( 'page_on_front' != substr( $page_html, 14, 13 ) )
 		return $page_html;
 
@@ -693,7 +693,7 @@ register_activation_hook ( __FILE__ , 'wp_idea_stream_activate');
 function wp_idea_stream_activate(){
 	if( get_option('_ideastream_vestion') && get_option('_ideastream_vestion') != WP_IDEA_STREAM_VERSION){
 		update_option('_ideastream_vestion', WP_IDEA_STREAM_VERSION);
-	}		
+	}
 	elseif( ! get_option('_ideastream_vestion' ) ){
 		wp_idea_stream_add_rewrite_rules();
 		wp_idea_stream_register_post_type();
@@ -709,7 +709,7 @@ function wp_idea_stream_activation_notice() {
 	if ( ! is_admin() )
 		return false;
 
-	if ( empty( $wp_rewrite->permalink_structure ) && ! empty( $_POST['permalink_structure'] ) ) { ?>
+	if ( empty( $wp_rewrite->permalink_structure ) && empty( $_POST['permalink_structure'] ) ) { ?>
 		<div id="message" class="updated fade">
 			<p><?php printf( __( '<strong>Idea Stream is almost ready</strong>. You must <a href="%s">update your permalink structure</a> to something other than the default for it to work.', 'wp-idea-stream' ), admin_url( 'options-permalink.php' ) ) ?></p>
 		</div><?php
@@ -747,7 +747,7 @@ function wp_idea_stream_filter_notification($message, $comment_id){
 	$comment = get_comment($comment_id);
 	$post = get_post($comment->comment_post_ID);
 	$user = get_userdata( $post->post_author );
-	
+
 	if( !user_can($user->ID, 'edit_comment') ){
 		$notify_message  = sprintf( __( 'New comment on your post "%s"' ), $post->post_title ) . "\r\n";
 		$notify_message .= __('Comment: ') . "\r\n" . $comment->comment_content . "\r\n\r\n";
@@ -758,4 +758,3 @@ function wp_idea_stream_filter_notification($message, $comment_id){
 }
 
 add_filter('comment_notification_text', 'wp_idea_stream_filter_notification', 9, 2);
-?>

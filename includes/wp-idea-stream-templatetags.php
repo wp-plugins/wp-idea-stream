@@ -103,9 +103,9 @@ function wp_idea_stream_paginate_link($paged = false){
 		$pagid = get_query_var('paged');
 	}
 	$offset = $idea_meta['per_page'] * ($pagid - 1);
-	
+
 	$max_pages = ceil($idea_meta['all_count'] / $idea_meta['per_page']);
-	
+
 	if($max_pages > 1){
 		if(!$paged){
 			$page_links = paginate_links( array(
@@ -127,8 +127,8 @@ function wp_idea_stream_paginate_link($paged = false){
 		        'current' => $pagid
 		     ));
 		}
-			
-		
+
+
  		if ( $page_links ) { ?>
 			<div class="nav-previous"><?php $page_links_text = sprintf( __( 'Page: ' ) . '%s',
 			$page_links
@@ -360,7 +360,7 @@ function is_idea_author(){
 
 function wpis_editor_the_title() {
 	$title = ! empty( $_POST["_wp_is_title"] ) ? $_POST["_wp_is_title"] : '';
-	echo apply_filters( 'wpis_editor_the_title', $title ); 
+	echo apply_filters( 'wpis_editor_the_title', $title );
 }
 
 function wpis_editor_the_content() {
@@ -382,24 +382,24 @@ function wp_idea_stream_load_editor_new(){
 			<?php
 		}
 		else{
-			
+
 			if( count( $wp_idea_stream_submit_errors ) > 0 ){
 				?>
 				<div id="ideastream_errors">
 					<p><?php _e('Please make sure to check the following error(s) :','wp-idea-stream');?></p>
 					<ul>
-						
+
 					<?php foreach( $wp_idea_stream_submit_errors as $error ) :?>
 						<li><?php echo $error ;?></li>
 					<?php endforeach;?>
-					
+
 					</ul>
 				</div>
 				<?php
 			}
-			
+
 			//editor args
-			$args = array( 
+			$args = array(
 				'textarea_name' => 'content',
 				'wpautop' => true,
 				'media_buttons' => false,
@@ -410,25 +410,25 @@ function wp_idea_stream_load_editor_new(){
 				'tinymce' => true,
 				'quicktags' => false
 			);
-			
+
 			// Temporarly filter the editor
 			add_filter( 'mce_buttons', 'wp_idea_stream_teeny_button_filter', 10, 1 );
 			?>
-			
+
 			<form action="" method="post" enctype="multipart/form-data">
-				
+
 				<div class="new-idea-form">
 					<label for="_wp_is_title"> <?php _e('Title of your Idea','wp-idea-stream');?></label>
 					<input type="text" id="wp_is_title" name="_wp_is_title" value="<?php wpis_editor_the_title();?>"/>
 				</div>
-				
+
 				<div class="new-idea-form">
 					<label for="content"> <?php _e('Content of your Idea','wp-idea-stream');?></label>
-					
+
 					<?php wp_editor( wpis_editor_the_content(), "ideastream_content", $args );?>
-					
+
 				</div>
-			
+
 				<div class="new-idea-form">
 					<label for="_wp_is_category"> <?php _e('Choose at least one category','wp-idea-stream');?></label>
 						<p>
@@ -453,13 +453,13 @@ function wp_idea_stream_load_editor_new(){
 				<?php do_action('wp_idea_stream_add_extra_fields');
 
 				echo wp_nonce_field('wp-ideastream-check-referrer','wp-ideastream-check', true, false);
-			
+
 				?>
 
 				<div class="is-action-btn">
 				<input type="submit" name="_wp_is_submit_idea" id="wp_is_submit_idea" value="<?php _e('Submit your idea','wp-idea-stream');?> &rarr;" class="ideastream_btn"/>
 				</div>
-				
+
 			</form>
 
 			<?php
@@ -486,29 +486,29 @@ add_action('wp_idea_stream_insert_editor','wp_idea_stream_load_editor_new');
 function wp_idea_stream_editor_settings( $type = false ) {
 	if( empty($type) )
 		return false;
-		
+
 	$editor_settings = get_option('_ideastream_editor_config');
-	
+
 	// by default we have image and links
 	if( !is_array( $editor_settings ) )
 		return 1;
-	
+
 	else {
 		return $editor_settings[$type];
 	}
 }
 
 function wp_idea_stream_load_twentyup() {
-	
+
 	if( get_query_var('ideas') || get_query_var('category-ideas') || get_query_var('tag-ideas') || get_query_var('pagename') == 'new-idea' || get_query_var('pagename') == 'idea-author' || get_query_var('pagename') == 'featured-ideas' || get_query_var('pagename') == 'all-ideas' || wp_idea_stream_is_all_ideas_onfront() ){
-		
+
 		$dep = is_new_idea() ? array('style-subidea') : false ;
-		
+
 		if( get_option("stylesheet") == "twentyeleven" )
 			wp_enqueue_style('2011-fix', WP_IDEA_STREAM_PLUGIN_URL .'/css/2011.css', $dep );
 		else if( get_option("stylesheet") == "twentytwelve" )
 			wp_enqueue_style('2012-fix', WP_IDEA_STREAM_PLUGIN_URL .'/css/2012.css', $dep );
-		
+
 	}
 }
 
