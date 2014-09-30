@@ -467,11 +467,11 @@ class WP_Idea_Stream_Admin {
 		}
 
 		$bulk_messages[ $this->post_type ] = apply_filters( 'wp_idea_stream_admin_updated_bulk_messages', array(
-			'updated'   => _n( '%s idea updated.', '%s ideas updated.', $bulk_counts['updated'] ),
-			'locked'    => _n( '%s idea not updated, somebody is editing it.', '%s ideas not updated, somebody is editing them.', $bulk_counts['locked'] ),
-			'deleted'   => _n( '%s idea permanently deleted.', '%s ideas permanently deleted.', $bulk_counts['deleted'] ),
-			'trashed'   => _n( '%s idea moved to the Trash.', '%s ideas moved to the Trash.', $bulk_counts['trashed'] ),
-			'untrashed' => _n( '%s idea restored from the Trash.', '%s ideas restored from the Trash.', $bulk_counts['untrashed'] ),
+			'updated'   => _n( '%s idea updated.', '%s ideas updated.', $bulk_counts['updated'], 'wp-idea-stream' ),
+			'locked'    => _n( '%s idea not updated, somebody is editing it.', '%s ideas not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-idea-stream' ),
+			'deleted'   => _n( '%s idea permanently deleted.', '%s ideas permanently deleted.', $bulk_counts['deleted'], 'wp-idea-stream' ),
+			'trashed'   => _n( '%s idea moved to the Trash.', '%s ideas moved to the Trash.', $bulk_counts['trashed'], 'wp-idea-stream' ),
+			'untrashed' => _n( '%s idea restored from the Trash.', '%s ideas restored from the Trash.', $bulk_counts['untrashed'], 'wp-idea-stream' ),
 		) );
 
 		return $bulk_messages;
