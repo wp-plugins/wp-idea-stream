@@ -1,53 +1,40 @@
 === WP Idea Stream ===
 Contributors: imath
 Donate link: http://imathi.eu/donations/
-Tags: idea, innovation, management, ideas, ideation, sharing, post-type, rating
-Requires at least: 3.9
+Tags: buddypress, idea, innovation, management, ideas, ideation, sharing, post-type, rating
+Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 1.2
+Stable tag: 2.0.0
 License: GNU/GPL 2
 
-Adds an Idea Management System to your WordPress!
+Share ideas, great ones will rise to the top!
 
 == Description ==
 
-WP Idea Stream adds a light Idea Management System to your WordPress Blog. Your members will be able to submit ideas from the front end.
-A star rating system and 4 widgets to display Ideas related content are included.
+WP Idea Stream is a WordPress plugin to power idea management for your site. Your members will be able to easily create, share and rate ideas.
 
-In IdeaStream admin menu, you'll be able to customize the behavior of the plugin thanks to the submenu IdeaStream Options.
-
-Once the plugin is installed, simply add at least one category of the Idea Post Type from the back end in order to activate the submit form.
-You can specify the IdeaStream list of ideas to show directly on your blog home from the reading options.
-
-Since version 1.2, **this plugin requires WordPress 3.9** and is optimized for twentytwelve theme.
-
-If you're using another theme, i advise you to copy the templates of WP Idea Stream templates dir and then paste them into your theme's folder.
-Then you can edit the copy you put in your theme's folder to suit your design. If an IdeaStream template is found in active theme dir, it overrides the one in the plugin dir.
+Here's a 3 mins demo of it (sorry for my english) :
+http://vimeo.com/107403493
 
 WP Idea Stream is available in French and English.
 
-Here's a very long demo of it (sorry for my english) :
-http://vimeo.com/55241231
-
 == Installation ==
 
-You can download and install WP Idea Manager using the built in WordPress plugin installer. If you download WP Idea Manager manually, make sure it is uploaded to "/wp-content/plugins/wp-idea-stream/".
+You can download and install WP Idea Stream using the built in WordPress plugin installer. If you download WP Idea Stream manually, make sure it is uploaded to "/wp-content/plugins/wp-idea-stream/".
 
-Activate WP Idea Manager in the "Plugins" admin panel using the "Activate" link.
+Activate WP Idea Stream in the "Plugins" admin panel using the "Activate" link.
 
 == Frequently Asked Questions ==
+
+= I'm not using BuddyPress, will it work without it ? =
+Of course! But try BuddyPress, it's awesome :)
+
+= I'm not using WordPress 4.0, is this plugin compatible with an older version ? =
+Since 2.0.0, plugin is requiring 4.0.
 
 = I'm not using WordPress 3.9, is this plugin compatible with an older version ? =
 Version 1.2 of the plugin requires WordPress 3.9, if you want to use this plugin with an earlier version of WordPress, you'll need to download a previous version of the plugin.
 I advise you to browse the [different versions](http://wordpress.org/extend/plugins/wp-idea-stream/developers/ "Other version") available and choose version 1.0.3 if you run a WordPress from 3.1 to 3.4.2 and 1.1 if you run a WordPress from 3.5.
-
-= I'm still using the twentyeleven or twentyten theme with WordPress 3.5, how can i make the different templates go along with it ? =
-You can download from my dorpbox a [zip file](https://dl.dropbox.com/u/2322874/templates-2010-11.zip "my dropbox") containing the idea templates optimized for this 2 themes. Once you've downloaded them, simply copy and paste them
-in your twentyeleven or twentyten (child) theme directory.
-
-= When on front end, idea category or tag are displaying a 404 ? =
-
-To fix this, you can go to your permalinks settings and simply click on the "save changes" button to update your permalinks settings
 
 = If you have any other questions =
 
@@ -55,12 +42,33 @@ Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or u
 
 == Screenshots ==
 
-1. form to submit ideas.
-2. Ratings, Admin Bar shortcuts, reading settings
-3. IdeaStream Options
-4. Widgets
+1. User profile.
+2. Moderating comments about ideas
+3. Moderating ratings
+4. Submit form in a BuddyPress group.
+5. Ideas archive page
 
 == Changelog ==
+
+= 2.0.0 =
+
+* The plugin has been completely rewritten
+* requires WordPress 4.0
+* adds BuddyPress support (2.1 required if BuddyPress is activated)
+* uses WP Rewrite API so that you can leave default permalink settings or use pretty urls
+* Idea author's archive page is now a user profile with 3 tabs to see the ideas shared/commented/rated by the user
+* Improves the way plugin's templates are loaded to try to adapt to the most WordPress themes
+* Plugin's templates and css file can be overriden from the theme as soon as there are in a folder name 'wp-idea-stream'
+* Separates comments about ideas from other post types comments
+* Gives a 5 minutes extra time to the user to edit his idea once submitted
+* Adds new sort options to filter ideas by number of comments, average rate or latest
+* Adds a new search feature
+* Adds a sticky feature to public ideas.
+* Admins can now moderate ratings
+* All url slugs can be customized
+* Adds an option to neutralize comments about ideas
+* New widgets : top contributors, most popular ideas (comments/rates), most recent comments about ideas...
+* and some other nice enhancements to discover by yourself ;)
 
 = 1.2 =
 
@@ -98,6 +106,10 @@ Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or u
 * Plugin birth..
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Please be sure to use at least WordPress 4.0 before upgrading/downloading this plugin.
+Back up your database and files (in case you want to roll back to previous version).
 
 = 1.2 =
 Please be sure to use at least WordPress 3.9 before upgrading/downloading this plugin.
