@@ -54,7 +54,7 @@ Please add a comment [here](http://imathi.eu/tag/wp-idea-stream/ "my blog") or u
 == Changelog ==
 
 = 2.1.2 =
-* Fixes potential security issues by making sure add_query_arg() urls are escaped
+* Fixes potential security issues by making sure add_query_arg() urls are escaped.
 
 = 2.1.1 =
 * Fixes potential security issues
