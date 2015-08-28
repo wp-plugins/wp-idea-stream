@@ -50,13 +50,13 @@ add_action( 'wp_idea_stream_idea_header',             'wp_idea_stream_users_the_
 add_action( 'wp_idea_stream_before_archive_main_nav', 'wp_idea_stream_ideas_taxonomy_description'    );
 
 // Actions to handle user actions (eg: submit new idea)
-add_action( 'wp_idea_stream_template_redirect', 'wp_idea_stream_actions',                         4 );
-add_action( 'wp_idea_stream_actions',           'wp_idea_stream_set_user_feedback',               5 );
-add_action( 'wp_idea_stream_actions',           'wp_idea_stream_ideas_post_idea'                    );
-add_action( 'wp_idea_stream_actions',           'wp_idea_stream_ideas_update_idea'                  );
-add_action( 'wp_idea_stream_actions',           'wp_idea_stream_users_profile_description_update'   );
-add_action( 'wp_idea_stream_actions',           'wp_idea_stream_users_signup_user'                  );
-add_action( 'wp_ajax_wp_idea_stream_rate',      'wp_idea_stream_ajax_rate'                          );
+add_action( 'wp_idea_stream_template_redirect', 'wp_idea_stream_actions',                             4 );
+add_action( 'wp_idea_stream_actions',           'wp_idea_stream_set_user_feedback',                   5 );
+add_action( 'wp_idea_stream_actions',           'wp_idea_stream_ideas_post_idea'                        );
+add_action( 'wp_idea_stream_actions',           'wp_idea_stream_ideas_update_idea'                      );
+add_action( 'wp_idea_stream_actions',           'wp_idea_stream_users_profile_description_update'       );
+add_action( 'wp_idea_stream_actions',           'wp_idea_stream_users_signup_user',               10, 0 );
+add_action( 'wp_ajax_wp_idea_stream_rate',      'wp_idea_stream_ajax_rate'                              );
 
 // Admin
 add_action( 'admin_init', 'wp_idea_stream_admin_init', 10 );
@@ -77,8 +77,9 @@ add_action( 'wp_idea_stream_widgets_init', array( 'WP_Idea_Stream_Comments_Recen
 add_action( 'deleted_user', 'wp_idea_stream_users_delete_user_data', 10, 1 );
 
 // Signups
-add_action( 'wp_idea_stream_set_core_template', 'wp_idea_stream_user_signup_redirect', 10, 1 );
-add_action( 'login_form_register',              'wp_idea_stream_user_signup_redirect', 10    );
+add_action( 'wp_idea_stream_set_core_template', 'wp_idea_stream_user_signup_redirect',      10, 1 );
+add_action( 'login_form_register',              'wp_idea_stream_user_signup_redirect',      10    );
+add_action( 'login_form_rp',                    'wp_idea_stream_user_setpassword_redirect', 10    );
 
 // Admin Menu Bar
 add_action( 'admin_bar_menu', 'wp_idea_stream_adminbar_menu', 999 );
